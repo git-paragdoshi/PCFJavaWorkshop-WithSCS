@@ -1,0 +1,212 @@
+= Lab 1 - Pushing Your First Application
+
+[abstract]
+--
+In this lab we will push a .NET web application to cloud foundry.
+--
+
+== Download code
+
+. Download and clone the git repo in Visual Studio, if you have the command line tool installed, or you can click 'Download ZIP' on the right side of the page https://github.com/Pivotal-Field-Engineering/pcf-dotnet-environment-viewer[here]
++
+----
+> git clone https://github.com/Pivotal-Field-Engineering/pcf-dotnet-environment-viewer
+----
+
+== Target
+
+. If you haven't already, set the API target for the CLI: (set appropriate end point for your environment)
++
+----
+> cf api https://api.run.haas-65.pez.pivotal.io --skip-ssl-validation
+----
+and login to Pivotal Cloudfoundry:
++
+----
+> cf login
+----
++
+Follow the prompts. 
+
+== Push It!
+
+. Change to the _ViewEnvironment_ application directory (this is the folder containing the code files and manifest.yml):
++
+----
+> cd pcf-dotnet-environment-viewer/ViewEnvironment
+----
+
+. Push the application!
++
+----
+> cf push
+----
++
+You should see output similar to the following listing. Take a look at the listing callouts for a play-by-play of what's happening:
++
+====
+----
+> cf push
+Using manifest file /Users/pdoshi/workshop/CloudNativeWorkshop_DotNet/pcf-dotnet-environment-viewer/ViewEnvironment/manifest.yml
+
+Using stack windows2012R2...
+OK
+Creating app env in org student-42 / space development as student-42...
+OK
+
+Creating route env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io...
+OK
+
+Binding env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io to env...
+OK
+
+Uploading env...
+Uploading app files from: /Users/pdoshi/workshop/CloudNativeWorkshop_DotNet/pcf-dotnet-environment-viewer/ViewEnvironment
+Uploading 153.2K, 42 files
+Done uploading               
+OK
+
+Starting app env in org student-42 / space development as student-42...
+Downloading binary_buildpack...
+Downloaded binary_buildpack
+Creating container
+Successfully created container
+Downloading app package...
+Staging...
+Downloaded app package (746.2K)
+Uploading droplet...
+Exit status 0
+Staging complete
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploaded build artifacts cache (88B)
+Uploaded droplet (730.3K)
+Uploading complete
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App env was started using this command `..\tmp\lifecycle\WebAppServer.exe`
+
+Showing health and status for app env in org student-42 / space development as student-42...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
+last uploaded: Wed Jan 25 12:31:38 UTC 2017
+stack: windows2012R2
+buildpack: binary_buildpack
+
+     state     since                    cpu    memory      disk      details
+#0   running   2017-01-25 07:31:57 AM   0.0%   0 of 512M   0 of 1G
+
+
+----
+<1> The CLI is using a manifest to provide necessary configuration details such as application name, memory to be allocated, the stack to be used (in this case Windows2012R2), the number of instances requested to start, and path to the application artifact.
+Take a look at `manifest.yml` to see how.
+<2> In most cases, the CLI indicates each Cloud Foundry API call as it happens.
+In this case, the CLI has created an application record for _env_ in your assigned space.
+<3> All HTTP/HTTPS requests to applications will flow through Cloud Foundry's front-end router called https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/router.html[(Go)Router].
+Here the CLI is creating a route with random word tokens inserted (again, see `manifest.yml` for a hint!) to prevent route collisions across the default `app.run.haas-65.pez.pivotal.io` domain.
+<4> Now the CLI is _binding_ the created route to the application.
+Routes can actually be bound to multiple applications to support techniques such as https://docs.pivotal.io/pivotalcf/1-9/devguide/deploy-apps/blue-green.html[blue-green deployments].
+<5> The CLI finally uploads the application bits to Pivotal Cloud Foundry. Notice that it's uploading _39 files_! This is because Cloud Foundry actually uploads all the files for the deployment for caching purposes.
+<6> Now we begin the staging process. By choosing the Windows2012R2 stack a container is created on the runtime to prepare the application to run, a second container is then generated that will host your application...in this case using the WebAppServer process in Windows.  If you want to try with other languages you can push an application on the Linux stack.
+<7> The complete package of your application and all of its necessary runtime components is called a _droplet_.
+Here the droplet is being uploaded to Pivotal Cloudfoundry's internal blobstore so that it can be easily copied to one or more Cells in the _https://docs.pivotal.io/pivotalcf/1-9/concepts/diego/diego-architecture.html[Diego Architecture]_ for execution.
+<8> The CLI tells you exactly what command and argument set was used to start your application.
+<9> Finally the CLI reports the current status of your application's health.
+====
+
+. Visit the application in your browser by hitting the route that was generated by the CLI:
++
+image::../../Common/images/lab-net.png[]
+
+== Interact with App from CF CLI
+
+. Get information about the currently deployed application using CLI apps command:
++
+----
+> cf apps
+----
++
+You should see output similar to the following listing:
++
+----
+> cf apps
+Getting apps in org student-42 / space development as student-42...
+OK
+
+name   requested state   instances   memory   disk   urls
+env    started           1/1         512M     1G     env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
+----
++
+
+Note the application name for next steps
+
+. Get information about running instances, memory, CPU, and other statistics using CLI instances command
++
+----
+> cf app env
+----
++
+
+You should see output similar to the following listing:
++
+----
+> cf app env
+Showing health and status for app env in org student-42 / space development as student-42...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
+last uploaded: Wed Jan 25 12:31:38 UTC 2017
+stack: windows2012R2
+buildpack: binary_buildpack
+
+     state     since                    cpu    memory           disk         details
+#0   running   2017-01-25 07:31:57 AM   0.8%   111.6M of 512M   3.8M of 1G
+
+----
++
+
+. Stop the deployed application using the CLI
++
+----
+> cf stop env
+----
++
+You should see output similar to the following listing:
++
+----
+> cf stop env
+Stopping app env in org student-42 / space development as student-42...
+OK
+----
++
+
+. Delete the deployed application using the CLI
++
+----
+> cf delete env
+----
++
+You should see output similar to the following listing:
++
+----
+> cf delete env
+Really delete the app env?> yes
+Deleting app env in org student-42 / space development as student-42...
+OK
+----
++

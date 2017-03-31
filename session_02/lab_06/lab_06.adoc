@@ -1,0 +1,173 @@
+= Lab 6 - Managing application logs from a .NET application
+
+[abstract]
+--
+In this lab we will continue adding on to our Attendees ASP.NET application by using log4net to log information to the console (stdout/stderr)
+--
+
+== Building upon our Attendees Application
+
+=== Configuring log4net
+
+1. Right click on the Project name and select Manage NuGet Packages
+2. Click the browse link 
+3. Search for log4net
+4. Select the log4net by Apache Software Foundation (v2.0.5) and click the Install Button. 
+    a. Click Ok to accept the Changes and confirm the packages is marked as installed (green tick)
++
+image::../../Common/images/lab-log4net-nuget.png[]
++
+5. In the Solutions Explorer click on Properties and open the AssemblyInfo.cs
+    a. Add the following code at the bottom of this file:  
+
+        [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]
+
+    b. Save the AssemblyInfo.cs file
+6. In the Solutions Explorer right click the solution and add a new text file with name "log4net.config"
+    a. Add the following content to the file:
+
+        <?xml version="1.0" encoding="utf-8" ?>
+          <log4net>
+            <root>
+              <level value="ALL" />
+              <appender-ref ref="MyAppender" />
+            </root>
+            <appender name="MyAppender" type="log4net.Appender.ConsoleAppender">
+              <layout type="log4net.Layout.PatternLayout">
+                <conversionPattern value="%date %level %logger - %message%newline" />
+              </layout>
+            </appender>
+          </log4net>
+        
+  b. Save the log4net.config file
+
+
+=== Using log4net 
+
+1. In the Controllers folder open the HomeController.cs
+    a. Add the following class member field:
+
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(typeof(HomeController));
+
+    b. Add as many log entries as desired in the class methods. For example:
+
+        public ActionResult Index()
+        {
+            log.Info("Action Index has been fired.");
+            return View();
+        }
+        
+    c. Save the HomeController.cs file
+
+
+=== Publishing and Pushing the .NET Application
+
+1. Publish the .NET applicaiton by right-clicking on the project name and selecting publish. Use the same profile as was used before.
+    a. Note: If you have changed namespaces or made changes to the assembly name, be sure you delete any files prior to publishing. If you do, be sure to back up the manifest.yml file.
+
+2. If you haven't already, set the API target for the CLI: (set appropriate end point for your environment)
++
+----
+> cf api https://api.run.haas-76.pez.pivotal.io --skip-ssl-validation
+----
+and login to Pivotal Cloudfoundry:
++
+----
+> cf login
+----
++
+Follow the prompts.
+
+4. Change to the folder containing the published code files and manifest.yml (Replace "[Publish-Target-Location-folder]" with the actual folder name: 
++
+----
+> cd [Publish-Target-Location-folder]
+----
+
+5. Push the application!
++
+----
+> cf push
+----
++
+You should see output similar to the following listing. Take a look at the listing callouts for a play-by-play of what's happening:
++
+----
+> cf push
+Using manifest file C:\Users\admin\Documents\Published\PCFDeploy\manifest.yml
+
+Using stack windows2012R2...
+OK
+Creating app wsattendees in org student-42 / space development as student-42...
+OK
+
+Using route wsattendees-student-42.cfapps.haas-65.pez.pivotal.io
+Binding wsattendees-student-42.cfapps.haas-65.pez.pivotal.io to wsattendees...
+OK
+
+Uploading wsattendees...
+Uploading app files from: C:\Users\admin\Documents\Published\PCFDeploy
+Uploading 303.7K, 46 files
+Done uploading
+OK
+
+Starting app wsattendees in org student-42 / space development as student-42...
+Downloading binary_buildpack...
+Downloaded binary_buildpack
+Creating container
+Successfully created container
+Downloading app package...
+Staging...
+Downloaded app package (5.8M)
+Uploading droplet, build artifacts cache...
+Exit status 0
+Staging complete
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (88B)
+Uploaded droplet (5.8M)
+Uploading complete
+Destroying container
+Successfully destroyed container
+
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App wsattendees was started using this command `..\tmp\lifecycle\WebAppServer.exe`
+
+Showing health and status for app wsattendees in org student-42 / space development as student-42...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: wsattendees-student-42.cfapps.haas-65.pez.pivotal.io
+last uploaded: Thu Jan 26 17:47:52 UTC 2017
+stack: windows2012R2
+buildpack: binary_buildpack
+
+     state     since                    cpu     memory         disk          details
+#0   running   2017-01-26 05:48:26 PM   88.8%   213M of 512M   19.6M of 1G
+----
+
+6. From the console tail the logs of your application
++
+----
+> cf logs wsattendees
+----
++
+7. Visit the application in your browser by hitting the route that was diplayed by the CLI, and go to the sections of the app where you added log traces in the HomeController
+8. After a few clicks go back to the command prompt where you were tailing your logs and you should now see APP log traces with the information you put in the code
++
+----
+2017-01-26T17:49:52.62+0000 [APP/0]      OUT 2017-01-26 05:49:52,629 INFO PCFWorkshop1.Controllers.HomeController - Action Index has been fired.
+2017-01-26T17:51:05.87+0000 [RTR/0]      OUT wsattendees-student-42.cfapps.haas-65.pez.pivotal.io - [26/01/2017:17:51:05.844 +0000] "GET / HTTP/1.1" 200 0 3103 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36" 10.193.134.250:38742 10.193.134.3:52576 x_forwarded_for:"54.163.120.126" x_forwarded_proto:"https" vcap_request_id:a965dd23-1664-482f-4dad-e3268dcc6f5f response_time:0.030706087 app_id:ed7e0668-5ae5-4540-a74d-c294fd47d0d1 app_index:0
+----
+

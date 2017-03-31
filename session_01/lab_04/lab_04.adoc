@@ -1,0 +1,240 @@
+= Lab 4 - Monitoring Applications
+
+[abstract]
+--
+Pivotal Cloud Foundry makes the work of performing actions, such as managing logs, doing a zero-downtime deploy, and managing application health very easy.
+In the this labs we'll explore some of these capabilities.
+--
+
+== Tailing Application Logs
+
+One of the most important enablers of visibility into application behavior is logging.
+Effective management of logs has historically been difficult or required wiring into third party tools.
+Cloud Foundry's https://docs.pivotal.io/pivotalcf/1-9/loggregator/architecture.html[log aggregation] components simplify log management by assuming responsibility for it.
+Application developers need only log all messages to either 'Console.Write' in .NET or  `STDOUT` or `STDERR` in other languages, and the platform will capture these messages.
+
+=== For Developers
+
+Application developers can view application logs using the CF CLI.
+
+. Let's view recent log messages for the application.
++
+----
+> cf logs env --recent
+----
++
+Here are two interesting subsets of one output from that command:
++
+.CF Component Logs
+====
+----
+> cf logs env --recent
+Connected, dumping recent logs for app env in org student-42 / space development as student-42...
+
+2017-01-25T16:50:30.07-0500 [API/0]      OUT Updated app with guid bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 ({"route"=>"c1702caa-9ca6-4cda-b373-69a93412f202"})
+2017-01-25T16:50:33.74-0500 [RTR/0]      OUT alternate-subdomain.cfapps.haas-65.pez.pivotal.io - [25/01/2017:21:50:33.731 +0000] "GET / HTTP/1.1" 200 0 8417 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/10.0.2 Safari/602.3.12" 10.193.134.250:35718 10.193.134.3:50457 x_forwarded_for:"50.232.79.2" x_forwarded_proto:"https" vcap_request_id:01ffe40b-7eac-4ed5-4288-520115fe4a77 response_time:0.009324429 app_id:bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 app_index:0
+2017-01-25T16:50:33.79-0500 [RTR/0]      OUT alternate-subdomain.cfapps.haas-65.pez.pivotal.io - [25/01/2017:21:50:33.792 +0000] "GET /css/foundation.css HTTP/1.1" 304 0 0 "https://alternate-subdomain.cfapps.haas-65.pez.pivotal.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/10.0.2 Safari/602.3.12" 10.193.134.250:35720 10.193.134.3:50457 x_forwarded_for:"50.232.79.2" x_forwarded_proto:"https" vcap_request_id:f783c1b1-58ca-4a57-5034-82453865eb09 response_time:0.002803689 app_id:bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 app_index:0
+
+----
+<1> An ``Apache-style'' access log event from the (Go)Router
+<2> An API log event that corresponds to an event as shown in `cf events`
+<3> A CELL log event indicating the start of an application instance on that CELL.
+====
++
+.Application Logs
+====
+----
+2017-01-25T16:50:45.95-0500 [APP/0]      OUT Kaboom.
+2017-01-25T16:53:44.43-0500 [APP/0]      OUT Exit status -1
+----
+====
++
+As you can see, Cloud Foundry's log aggregation components capture both application logs and CF component logs relevant to your application.
+These events are properly interleaved based on time, giving you an accurate picture of events as they transpired across the system.  In this case we output Kaboom when the kill button is pressed in the .NET app
+
+. To get a running ``tail'' of the application logs rather than a dump, simply type:
++
+----
+> cf logs env
+----
++
+You can try various things like refreshing the browser and triggering stop/start events to see logs being generated.
+
+== Health Management
+
+Cloud Foundry's https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/#nsync-bbs[components] actively monitors the health of our application processes and will restart them should they crash.
+
+. If you don't have one already running, start a log tail for `env`.  Alternatively, you could view the logs using the papertrail app.
++
+----
+> cf logs env
+----
+
+. If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the ``Kill Switch'' button. This button will trigger an Environment.Exit(-1) causing the Health Manager to observe an application instance crash:
++
+image::../../Common/images/lab-kill-button.png[]
+
+. After clicking the kill switch a couple of interesting things should happen.
+First, you'll see an error code returned in the browser, as the request you submitted never returns a response:
++
+image::../../Common/images/lab-kill-failed.png[]
++
+Also, if you're paying attention to the log tail, you'll see some interesting log messages fly by:
++
+====
+----
+2017-01-25T17:02:43.40-0500 [APP/0]      OUT Kaboom.
+2017-01-25T17:02:43.44-0500 [APP/0]      OUT Exit status -1
+2017-01-25T17:02:43.59-0500 [CELL/0]     OUT Exit status -26
+2017-01-25T17:02:43.59-0500 [CELL/0]     OUT Destroying container
+----
+<1> Just before issuing the `Environment.Exit(-1)` call, the application logs that the kill switch was clicked.
+<2> The (Go)Router logs the 502 error.
+<3> The API logs that an application instance exited due to a crash.
+====
+
+. Wait a few seconds...  By this time you should have noticed some additional interesting events in the logs:
++
+====
+----
+2017-01-25T17:02:43.62-0500 [CELL/0]     OUT Creating container
+2017-01-25T17:02:43.95-0500 [CELL/0]     OUT Successfully destroyed container
+2017-01-25T17:02:45.23-0500 [CELL/0]     OUT Successfully created container
+2017-01-25T17:02:46.30-0500 [CELL/0]     OUT Starting health monitoring of container
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT PORT == 61457
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT Running ..\tmp\lifecycle\WebAppServer.exe
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT 2017-01-25 22:02:49Z|INFO|Port:61457
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT 2017-01-25 22:02:49Z|INFO|Webroot:C:\containerizer\03670EBEB3A9F2BFB5\user\app
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT 2017-01-25 22:02:49Z|INFO|Starting web server instance...
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT Server Started.... press CTRL + C to stop
+2017-01-25T17:02:53.31-0500 [APP/0]      OUT Checking DB structure.
+2017-01-25T17:02:53.86-0500 [CELL/0]     OUT Container became healthy
+----
+<1> The CELL indicates that it is starting another instance of the application as a result of the Health Manager observing a difference between the desired and actual state (i.e. running instances = 1 vs. running instances = 0).
+<2> The new application instance starts logging events as it starts up.
+====
+
+. Revisiting the *HOME PAGE* of the application and you should see a fresh instance started:
++
+image::../../Common/images/lab-kill-ok.png[]
+
+== Viewing Application _Events_
+
+Cloud Foundry only allows application configuration to be modified via its API.
+This gives application operators confidence that all changes to application configuration are known and auditable.
+It also reduces the number of causes that must be considered when problems arise.
+
+All application configuration changes are recorded as _events_.
+These events can be viewed via the Cloud Foundry API, and viewing is facilitated via the CLI.
+
+Take a look at the events that have transpired so far for our deployment of `workshop`:
+
+====
+----
+> cf events env
+Getting events for app env in org student-42 / space development as student-42...
+
+time                          event                   actor        description
+2017-01-25T17:04:11.00-0500   app.crash               env          index: 0, reason: CRASHED, exit_description: 2 error(s) occurred:
+
+                                                                   * 2 error(s) occurred:
+
+                                                                   * Exited with status -1
+                                                                   * cancelled
+                                                                   * cancelled
+2017-01-25T16:53:44.00-0500   audit.app.update        student-42
+2017-01-25T16:53:44.00-0500   audit.app.unmap-route   student-42
+2017-01-25T16:50:30.00-0500   audit.app.update        student-42
+2017-01-25T16:50:30.00-0500   audit.app.map-route     student-42
+2017-01-25T15:50:28.00-0500   audit.app.update        student-42
+2017-01-25T15:50:28.00-0500   audit.app.unmap-route   student-42
+2017-01-25T15:43:23.00-0500   audit.app.update        student-42
+2017-01-25T15:43:23.00-0500   audit.app.map-route     student-42
+2017-01-25T15:22:16.00-0500   audit.app.update        student-42   instances: 1
+2017-01-25T15:13:51.00-0500   audit.app.update        student-42   instances: 3
+2017-01-25T08:58:06.00-0500   audit.app.restage       student-42
+2017-01-25T08:39:40.00-0500   audit.app.update        student-42   state: STARTED
+2017-01-25T08:39:33.00-0500   audit.app.update        student-42
+2017-01-25T08:39:33.00-0500   audit.app.map-route     student-42
+2017-01-25T08:39:32.00-0500   audit.app.create        student-42   instances: 1, memory: 512, state: STOPPED, environment_json: PRIVATE DATA HIDDEN
+----
+<1> Events are sorted newest to oldest, so we'll start from the bottom.
+Here we see the `app.create` event, which created our application's record and stored all of its metadata (e.g. `memory: 512`).
+<2> The `app.map-route` event records the incoming request to assign a route to our application.
+<3> An `app.update` event records the resulting change to our applications metadata.
+<4> An `app.update` event records the change of our application's state to `STARTED`.
+<5> Remember scaling the application up? An `app.update` event records the metadata change `instances: 2`.
+<6> Also there's the `app.crash` event recording that we encountered a crash of an application instance.
+====
+
+. Let's explicitly ask for the application to be stopped:
++
+----
+> cf stop env
+Stopping app env in org student-42 / space development as student-42...
+OK
+
+----
+
+. Now, examine the additional `app.update` event:
++
+----
+> cf events env
+Getting events for app env in org student-42 / space development as student-42...
+
+time                          event                   actor        description
+2017-01-25T17:10:18.00-0500   audit.app.update        student-42   state: STOPPED
+2017-01-25T17:04:11.00-0500   app.crash               env          index: 0, reason: CRASHED, exit_description: 2 error(s) occurred:
+
+                                                                   * 2 error(s) occurred:
+
+                                                                   * Exited with status -1
+                                                                   * cancelled
+                                                                   * cancelled
+
+----
+
+. Start the application again:
++
+----
+> cf start env
+Starting app env in org student-42 / space development as student-42...
+
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App env was started using this command `..\tmp\lifecycle\WebAppServer.exe`
+
+Showing health and status for app env in org student-42 / space development as student-42...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: env-patellate-catatonia.cfapps.haas-65.pez.pivotal.io
+last uploaded: Wed Jan 25 13:39:36 UTC 2017
+stack: windows2012R2
+buildpack: binary_buildpack
+
+     state     since                    cpu    memory          disk         details
+#0   running   2017-01-25 05:12:04 PM   0.0%   84.1M of 512M   3.5M of 1G
+----
+
+. And again, view the additional `app.update` event:
++
+----
+> cf events env
+Getting events for app env in org student-42 / space development as student-42...
+
+time                          event                   actor        description
+2017-01-25T17:11:55.00-0500   audit.app.update        student-42   state: STARTED
+2017-01-25T17:10:18.00-0500   audit.app.update        student-42   state: STOPPED
+----
+
+
