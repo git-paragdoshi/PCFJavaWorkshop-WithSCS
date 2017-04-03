@@ -1,4 +1,4 @@
- = Lab 4 - Monitoring Applications
+= Lab 4 - Monitoring Applications
 
 [abstract]
 --
