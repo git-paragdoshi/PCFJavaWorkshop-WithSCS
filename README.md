@@ -1,8 +1,6 @@
 # PCFJavaWorkshop-WithSCS
-Java workshop with PCF and SPC labs
+Java workshop with Pivotal Cloud Foundry and Spring Cloud Services (SCS)
 
-# Cloud Native Workshop
-Cloud Native Application Design and Architectures with Pivotal Cloud Foundry
 
 ## Instructors
 - Parag Doshi, Platform Architect, pdoshi@pivotal.io
