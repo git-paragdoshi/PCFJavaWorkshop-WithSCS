@@ -2,23 +2,45 @@
 
 [abstract]
 --
-In this lab we will push a .NET web application to cloud foundry.
+In this lab we will push a Java Spring Boot web application to cloud foundry.
 --
 
-== Download code
+== Download git repo (if not done already)
 
-. Download and clone the git repo in Visual Studio, if you have the command line tool installed, or you can click 'Download ZIP' on the right side of the page https://github.com/Pivotal-Field-Engineering/pcf-dotnet-environment-viewer[here]
+. Download and clone the git repo, if you have the command line tool installed, or you can click 'Download ZIP' on the right side of the page https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS [here]
 +
 ----
-> git clone https://github.com/Pivotal-Field-Engineering/pcf-dotnet-environment-viewer
+> git clone https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS
 ----
+
+== Navigate to the application directory
+
+. Navigate to /PCFJavaWorkshop-WithSCS/deployables/articulate directory
+. Open the manifest.yml file in your text editor and update the username to your unique username so that we can differentiate your app from other workshop attendee's app.
+For example, I changed the name value to the following in my manifest.yml file:
+ 
+ Previous value:
+ name: changeMeToUniqueUsername-articulate
+ 
+ New value:
+ name: paragdoshi-articulate
+ 
+ Complete manifest.yml file :
+ 
+ applications:
+- name: paragdoshi-articulate
+  path: ./articulate-0.0.1-SNAPSHOT.jar
+  instances: 1
+  memory: 1024M
+  disk_quota: 1024M
+  stack: cflinuxfs2
 
 == Target
 
 . If you haven't already, set the API target for the CLI: (set appropriate end point for your environment)
 +
 ----
-> cf api https://api.run.haas-65.pez.pivotal.io --skip-ssl-validation
+> cf api https://api.run.pivotal.io
 ----
 and login to Pivotal Cloudfoundry:
 +
