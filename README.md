@@ -40,15 +40,16 @@ This is a _loose_ schedule for the day. We will adjust as necessary based on our
 Start by downloading the course materials.  This can be accomplished either through the GitHub website or if you have Git installed, use the following commands:
 
 ```
-$ git clone https://github.com/git-paragdoshi/CloudNativeWorkshop_DotNet
-$ cd CloudNativeWorkshop_DotNet/
+$ git clone https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS
+$ cd PCFJavaWorkshop-WithSCS/
 $ git fetch --all
 ```
 
 **Prerequisites**
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli)
 - [Git Client](https://git-scm.com/downloads)
-- [VisualStudio (min: Visual Studio 2015 Update 3)](https://www.visualstudio.com/downloads/)
+- [Intellij Version 2016.1 or later)](https://https://www.jetbrains.com/idea/download/)
+- PWS account registration complete at http://run.pivotal.io
 
 ## Course Materials
 
