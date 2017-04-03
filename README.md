@@ -12,13 +12,13 @@ Cloud Native Application Design and Architectures with Pivotal Cloud Foundry
 
 Time | Session
 ---- | -------
-9:00 AM - 9:30 AM | Welcome breakfast and Introductions
-9:30 AM - 10:00 AM | Session 1: _Intro to Pivotal Cloud Foundry_
-10:15 AM - 10:30 AM | Lab 0: _Accessing the Workshop Environment_
-10:30 AM - 10:45 AM | Lab 1: _Pushing Your First Application_
-10:45 AM - 11:00 AM | _Break_
-11:00 AM - 11:15 AM | _Labs Review_
-11:15 AM - 11:30 AM | Lab 2: _Logging, Scaling and HA Lab_
+9:00 AM - 9:15 AM | Welcome and Introductions
+9:15 AM - 9:45 AM | Session 1: _Intro to Pivotal Cloud Foundry_
+9:45 AM - 10:00 AM | Lab 0: _Accessing the Workshop Environment_
+10:00 AM - 10:30 AM | Lab 1: _Pushing Your First Application_
+10:30 AM - 10:45 AM | _Break_
+10:45 AM - 11:00 AM | _Labs Review_
+11:00 AM - 11:30 AM | Lab 2: _Logging, Scaling and HA Lab_
 11:30 AM - 12:00 PM | Lab 3: _Auto Scaling and Zero Downtime Deployment Lab_
 12:00 PM - 12:30 PM | Lab 4: _Monitoring and Metrics Applications_
 12:30 PM - 1:15 PM  | _Lunch_
