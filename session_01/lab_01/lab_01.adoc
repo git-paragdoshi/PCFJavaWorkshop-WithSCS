@@ -7,7 +7,7 @@ In this lab we will push a Java Spring Boot web application to cloud foundry.
 
 == Download git repo (if not done already)
 
-. Download and clone the git repo, if you have the command line tool installed, or you can click 'Download ZIP' on the right side of the page https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS [here]
+. Download and clone the git repo, if you have the command line tool installed, or you can click 'Download ZIP' on the right side of the page https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS
 +
 ----
 > git clone https://github.com/git-paragdoshi/PCFJavaWorkshop-WithSCS
@@ -155,7 +155,7 @@ buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-
 <1> The CLI is using a manifest to provide necessary configuration details such as application name, memory to be allocated, the stack to be used (in this case cflinuxfs2), the number of instances requested to start, and path to the application artifact.
 Take a look at `manifest.yml` to see how.
 <2> In most cases, the CLI indicates each Cloud Foundry API call as it happens.
-In this case, the CLI has created an application record for _paragdosh-articulate_ in the assigned space.
+In this case, the CLI has created an application record for _paragdoshi-articulate_ in the assigned space.
 <3> All HTTP/HTTPS requests to applications will flow through Cloud Foundry's front-end router called https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/router.html[(Go)Router].
 Here the CLI is creating a route with your unique application name to prevent route collisions across the default `cfapps.io` domain.
 <4> Now the CLI is _binding_ the created route to the application.
