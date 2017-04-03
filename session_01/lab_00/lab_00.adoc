@@ -45,7 +45,7 @@ Space:          development
 
 == AppsManager Login
 
-. Login to Apps Manager URL: http://run.pivotal.io. It will redirect you to the login screen. Use the same username and passowrd you entered when using the CF CLI
+. Login to Apps Manager URL: http://run.pivotal.io. It will redirect you to the login screen. Use the same username and password you entered when using the CF CLI
 +
 image::../../Common/images/lab-student-login.png[]  
   
