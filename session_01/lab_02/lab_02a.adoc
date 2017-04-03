@@ -1,0 +1,49 @@
+                                                                   * Exited with status -1
+                                                                   * cancelled
+                                                                   * cancelled
+
+----
+
+. Start the application again:
++
+----
+> cf start env
+Starting app env in org student-42 / space development as student-42...
+
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App env was started using this command `..\tmp\lifecycle\WebAppServer.exe`
+
+Showing health and status for app env in org student-42 / space development as student-42...
+OK
+
+requested state: started
+instances: 1/1
+usage: 512M x 1 instances
+urls: env-patellate-catatonia.cfapps.haas-65.pez.pivotal.io
+last uploaded: Wed Jan 25 13:39:36 UTC 2017
+stack: windows2012R2
+buildpack: binary_buildpack
+
+     state     since                    cpu    memory          disk         details
+#0   running   2017-01-25 05:12:04 PM   0.0%   84.1M of 512M   3.5M of 1G
+----
+
+. And again, view the additional `app.update` event:
++
+----
+> cf events env
+Getting events for app env in org student-42 / space development as student-42...
+
+time                          event                   actor        description
+2017-01-25T17:11:55.00-0500   audit.app.update        student-42   state: STARTED
+2017-01-25T17:10:18.00-0500   audit.app.update        student-42   state: STOPPED
+----
+
