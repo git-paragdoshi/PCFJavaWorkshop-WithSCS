@@ -53,15 +53,17 @@ $ git fetch --all
 #### Session 1 [(Slides)](session_01/Session_01.pdf): _Intro to Pivotal Cloud Foundry_
   - [Lab 0 - Accessing the Workshop Environment](session_01/lab_00/lab_00.adoc)
   - [Lab 1 - Pushing Your First Application](session_01/lab_01/lab_01.adoc)
-  - [Lab 2 - Binding to Cloud Foundry Services](session_01/lab_02/lab_02.adoc)
-  - [Lab 3 - Scaling and Operating Applications](session_01/lab_03/lab_03.adoc)
+  - [Lab 2 - Scaling, Auto Scaling and Zero Downtime Deployment Lab](session_01/lab_02/lab_02.adoc)
+  - [Lab 3 - Monitoring, Metrics and HA Lab](session_01/lab_03/lab_03.adoc)
   - [Lab 4 - Monitoring Applications](session_01/lab_04/lab_04.adoc)
   - [Lab Review - PCF Architecture and PCF Push](session_01/Labs_Review_01.pdf)
-  - [Lab Review - Scaling, Services, Logs and HA](session_01/Labs_Review_02.pdf)
+  - [Lab Review - Scaling, Metrics, Logs and HA](session_01/Labs_Review_02.pdf)
 
-#### Session 2 [(Slides)](session_02/Session_02.pdf): _Cloud Native Design and Microservices_
-  - [Lab 5 - Deploying an ASP.NET MVC Application](session_02/lab_05/lab_05.adoc)
-  - [Lab 6 - Managing application logs from a .NET application](session_02/lab_06/lab_06.adoc)
+#### Session 2 [(Slides)](session_02/Session_02.pdf): _Cloud Native Design and Microservices with Spring Cloud Services_
+  - [Lab 4 - Dynamic Configuration Loading with Spring Cloud Services - Config Server](session_02/lab_05/lab_05.adoc)
+  - [Lab 5 - MicroServices Registration and Discovery with Spring Cloud Services - Eureka](session_02/lab_06/lab_06.adoc)
+  - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab_06.adoc)
+  - [Lab Review - Spring Cloud Services](session_02/Labs_Review_01.pdf)
 
-#### Session 3 [(Slides)](session_03/Session_03.pdf): _Spring Cloud Netflix & SteelToe_
-  - [Lab 7 - Using Config Server from a .NET application](session_03/lab_07/lab_07.adoc)
+#### Session 3 [(Slides)](session_03/Session_03.pdf): _Continuous Integration/Continuous Delivery Development with PCF_
+  - [Demo - CI/CD pipeline with Jenkins and PCF](session_03/demo/demo.adoc)
