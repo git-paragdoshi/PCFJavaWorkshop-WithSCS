@@ -1,4 +1,4 @@
-= Lab 4 - Monitoring Applications
+= Lab 2 - Monitoring Applications
 
 [abstract]
 --
@@ -20,20 +20,25 @@ Application developers can view application logs using the CF CLI.
 . Let's view recent log messages for the application.
 +
 ----
-> cf logs env --recent
+> cf logs paragdoshi-articulate --recent
 ----
 +
-Here are two interesting subsets of one output from that command:
+Here are some interesting subsets of one output from that command:
 +
 .CF Component Logs
 ====
 ----
-> cf logs env --recent
-Connected, dumping recent logs for app env in org student-42 / space development as student-42...
+> cf logs paragdoshi-articulate --recent
+Connected, dumping recent logs for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 
-2017-01-25T16:50:30.07-0500 [API/0]      OUT Updated app with guid bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 ({"route"=>"c1702caa-9ca6-4cda-b373-69a93412f202"})
-2017-01-25T16:50:33.74-0500 [RTR/0]      OUT alternate-nse_time:0.009324429 app_id:bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 app_index:0
-2017-01-25T16:50:33.79-0500 [RTR/0]      OUT alternate-subdomain.cfapps.haas-65.pez.pivotal.io - [25/01/2017:21:50:33.792 +0000] "GET /css/foundation.css HTTP/1.1" 304 0 0 "https://alternate-subdomain.cfapps.haas-65.pez.pivotal.io/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/602.3.12 (KHTML, like Gecko) Version/10.0.2 Safari/602.3.12" 10.193.134.250:35720 10.193.134.3:50457 x_forwarded_for:"50.232.79.2" x_forwarded_proto:"https" vcap_request_id:f783c1b1-58ca-4a57-5034-82453865eb09 response_time:0.002803689 app_id:bcb76c4f-a6a8-4c21-93b9-b796ab30a7c7 app_index:0
+2017-04-03T13:04:50.21-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:04:50.212  INFO 14 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2017-04-03T13:04:50.21-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:04:50.215  INFO 14 --- [           main] i.p.e.articulate.ArticulateApplication   : Started ArticulateApplication in 11.981 seconds (JVM running for 13.001)
+2017-04-03T13:04:52.25-0400 [CELL/0]     OUT Container became healthy
+2017-04-03T13:13:03.62-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.628  INFO 14 --- [nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-04-03T13:13:03.62-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.628  INFO 14 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2017-04-03T13:13:03.66-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.668  INFO 14 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 40 ms
+2017-04-03T13:13:04.35-0400 [RTR/5]      OUT paragdoshi-articulate.cfapps.io - [2017-04-03T17:13:03.595+0000] "GET / HTTP/1.1" 200 0 7830 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" "10.10.2.141:21261" "10.10.148.95:61096" x_forwarded_for:"208.102.173.112" x_forwarded_proto:"https" vcap_request_id:"ebd83dd8-9883-4645-4e1f-dff10e1109c0" response_time:0.759711021 app_id:"8e5b3fd9-272b-41bc-8a5e-b08528e06da0" app_index:"0" x_b3_traceid:"4caa316b231ffbe0" x_b3_spanid:"4caa316b231ffbe0" x_b3_parentspanid:"-"
+
 
 ----
 <1> An ``Apache-style'' access log event from the (Go)Router
