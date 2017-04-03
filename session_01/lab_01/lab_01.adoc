@@ -15,13 +15,12 @@ In this lab we will push a Java Spring Boot web application to cloud foundry.
 
 == Navigate to the application directory
 
-. Navigate to /PCFJavaWorkshop-WithSCS/deployables/articulate directory
+. Open a command prompt in Windows (or Terminal on Mac) Navigate to /PCFJavaWorkshop-WithSCS/deployables/articulate directory
 . Open the manifest.yml file in your text editor and update the username to your unique username so that we can differentiate your app from other workshop attendee's app.
-For example, I changed the name value to the following in my manifest.yml file:
+For example, below is the name value changes in my manifest.yml file. Remember to preserve the space after the :
  
  Previous value:
  name: changeMeToUniqueUsername-articulate
- 
  New value:
  name: paragdoshi-articulate
  
@@ -52,12 +51,6 @@ Follow the prompts.
 
 == Push It!
 
-. Change to the _ViewEnvironment_ application directory (this is the folder containing the code files and manifest.yml):
-+
-----
-> cd pcf-dotnet-environment-viewer/ViewEnvironment
-----
-
 . Push the application!
 +
 ----
@@ -69,44 +62,71 @@ You should see output similar to the following listing. Take a look at the listi
 ====
 ----
 > cf push
-Using manifest file /Users/pdoshi/workshop/CloudNativeWorkshop_DotNet/pcf-dotnet-environment-viewer/ViewEnvironment/manifest.yml
+Using manifest file /PCFJavaWorkshop-WithSCS/deployables/articulate/manifest.yml
 
-Using stack windows2012R2...
+Using stack cflinuxfs2...
 OK
-Creating app env in org student-42 / space development as student-42...
-OK
-
-Creating route env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io...
+Creating app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
-Binding env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io to env...
+Creating route paragdoshi-articulate.cfapps.io...
 OK
 
-Uploading env...
-Uploading app files from: /Users/pdoshi/workshop/CloudNativeWorkshop_DotNet/pcf-dotnet-environment-viewer/ViewEnvironment
-Uploading 153.2K, 42 files
+Binding paragdoshi-articulate.cfapps.io to paragdoshi-articulate...
+OK
+
+Uploading paragdoshi-articulate...
+Uploading app files from: /var/folders/1w/mpbw8_5s2_j491wwnlcc7vv40000gn/T/unzipped-app032543917
+Uploading 551.5K, 139 files
 Done uploading               
 OK
 
-Starting app env in org student-42 / space development as student-42...
+Starting app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 Downloading binary_buildpack...
+Downloading staticfile_buildpack...
+Downloading java_buildpack...
+Downloading ruby_buildpack...
+Downloading nodejs_buildpack...
+Downloaded nodejs_buildpack
+Downloaded staticfile_buildpack
+Downloading php_buildpack...
+Downloading go_buildpack...
+Downloaded go_buildpack
+Downloading python_buildpack...
+Downloaded java_buildpack
+Downloading dotnet_core_buildpack...
+Downloaded dotnet_core_buildpack
+Downloading dotnet_core_buildpack_beta...
+Downloaded dotnet_core_buildpack_beta
+Downloaded php_buildpack
 Downloaded binary_buildpack
+Downloaded python_buildpack
+Downloaded ruby_buildpack
 Creating container
 Successfully created container
 Downloading app package...
-Staging...
-Downloaded app package (746.2K)
-Uploading droplet...
+Downloaded app package (27.6M)
+-----> Java Buildpack Version: v3.14 (offline) | https://github.com/cloudfoundry/java-buildpack.git#d5d58c6
+-----> Downloading Open Jdk JRE 1.8.0_121 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_121.tar.gz (found in cache)
+       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.1s)
+-----> Downloading Open JDK Like Memory Calculator 2.0.2_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-2.0.2_RELEASE.tar.gz (found in cache)
+       Memory Settings: -Xss349K -Xmx681574K -XX:MaxMetaspaceSize=104857K -Xms681574K -XX:MetaspaceSize=104857K
+-----> Downloading Container Certificate Trust Store 2.0.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-certificate-trust-store/container-certificate-trust-store-2.0.0_RELEASE.jar (found in cache)
+       Adding certificates to .java-buildpack/container_certificate_trust_store/truststore.jks (0.4s)
+-----> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (found in cache)
 Exit status 0
-Staging complete
 Uploading droplet, build artifacts cache...
 Uploading build artifacts cache...
-Uploaded build artifacts cache (88B)
-Uploaded droplet (730.3K)
+Uploading droplet...
+Uploaded build artifacts cache (109B)
+Uploaded droplet (73M)
 Uploading complete
 Destroying container
 Successfully destroyed container
 
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
+0 of 1 instances running, 1 starting
 1 of 1 instances running
 
 App started
@@ -114,34 +134,34 @@ App started
 
 OK
 
-App env was started using this command `..\tmp\lifecycle\WebAppServer.exe`
+App paragdoshi-articulate was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher`
 
-Showing health and status for app env in org student-42 / space development as student-42...
+Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
 requested state: started
 instances: 1/1
-usage: 512M x 1 instances
-urls: env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
-last uploaded: Wed Jan 25 12:31:38 UTC 2017
-stack: windows2012R2
-buildpack: binary_buildpack
+usage: 1G x 1 instances
+urls: paragdoshi-articulate.cfapps.io
+last uploaded: Mon Apr 3 15:42:59 UTC 2017
+stack: cflinuxfs2
+buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
 
-     state     since                    cpu    memory      disk      details
-#0   running   2017-01-25 07:31:57 AM   0.0%   0 of 512M   0 of 1G
+     state     since                    cpu    memory         disk           details
+#0   running   2017-04-03 11:43:56 AM   0.0%   420.4M of 1G   154.6M of 1G
 
 
 ----
-<1> The CLI is using a manifest to provide necessary configuration details such as application name, memory to be allocated, the stack to be used (in this case Windows2012R2), the number of instances requested to start, and path to the application artifact.
+<1> The CLI is using a manifest to provide necessary configuration details such as application name, memory to be allocated, the stack to be used (in this case cflinuxfs2), the number of instances requested to start, and path to the application artifact.
 Take a look at `manifest.yml` to see how.
 <2> In most cases, the CLI indicates each Cloud Foundry API call as it happens.
-In this case, the CLI has created an application record for _env_ in your assigned space.
+In this case, the CLI has created an application record for _paragdosh-articulate_ in the assigned space.
 <3> All HTTP/HTTPS requests to applications will flow through Cloud Foundry's front-end router called https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/router.html[(Go)Router].
-Here the CLI is creating a route with random word tokens inserted (again, see `manifest.yml` for a hint!) to prevent route collisions across the default `app.run.haas-65.pez.pivotal.io` domain.
+Here the CLI is creating a route with your unique application name to prevent route collisions across the default `cfapps.io` domain.
 <4> Now the CLI is _binding_ the created route to the application.
 Routes can actually be bound to multiple applications to support techniques such as https://docs.pivotal.io/pivotalcf/1-9/devguide/deploy-apps/blue-green.html[blue-green deployments].
-<5> The CLI finally uploads the application bits to Pivotal Cloud Foundry. Notice that it's uploading _39 files_! This is because Cloud Foundry actually uploads all the files for the deployment for caching purposes.
-<6> Now we begin the staging process. By choosing the Windows2012R2 stack a container is created on the runtime to prepare the application to run, a second container is then generated that will host your application...in this case using the WebAppServer process in Windows.  If you want to try with other languages you can push an application on the Linux stack.
+<5> The CLI finally uploads the application bits to Pivotal Cloud Foundry. Notice that it's uploading _139 files_! This is because Cloud Foundry actually uploads all the files for the deployment for caching purposes.
+<6> Now we begin the staging process. By choosing the cflinuxfs2 stack a container is created on the runtime to prepare the application to run, a second container is then generated that will host your application...in this case using the Tomcat app server in Linux.   
 <7> The complete package of your application and all of its necessary runtime components is called a _droplet_.
 Here the droplet is being uploaded to Pivotal Cloudfoundry's internal blobstore so that it can be easily copied to one or more Cells in the _https://docs.pivotal.io/pivotalcf/1-9/concepts/diego/diego-architecture.html[Diego Architecture]_ for execution.
 <8> The CLI tells you exactly what command and argument set was used to start your application.
@@ -164,11 +184,11 @@ You should see output similar to the following listing:
 +
 ----
 > cf apps
-Getting apps in org student-42 / space development as student-42...
+Getting apps in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
-name   requested state   instances   memory   disk   urls
-env    started           1/1         512M     1G     env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
+name                    requested state   instances   memory   disk   urls
+paragdoshi-articulate   started           1/1         1G       1G     paragdoshi-articulate.cfapps.io
 ----
 +
 
@@ -177,58 +197,28 @@ Note the application name for next steps
 . Get information about running instances, memory, CPU, and other statistics using CLI instances command
 +
 ----
-> cf app env
+> cf app paragdoshi-articulate
 ----
 +
 
 You should see output similar to the following listing:
 +
 ----
-> cf app env
-Showing health and status for app env in org student-42 / space development as student-42...
+> cf app paragdoshi-articulate
+Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
 requested state: started
 instances: 1/1
-usage: 512M x 1 instances
-urls: env-unrecaptured-casaque.cfapps.haas-65.pez.pivotal.io
-last uploaded: Wed Jan 25 12:31:38 UTC 2017
-stack: windows2012R2
-buildpack: binary_buildpack
+usage: 1G x 1 instances
+urls: paragdoshi-articulate.cfapps.io
+last uploaded: Mon Apr 3 15:42:59 UTC 2017
+stack: cflinuxfs2
+buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
 
-     state     since                    cpu    memory           disk         details
-#0   running   2017-01-25 07:31:57 AM   0.8%   111.6M of 512M   3.8M of 1G
+     state     since                    cpu    memory         disk           details
+#0   running   2017-04-03 11:43:56 AM   0.2%   439.3M of 1G   154.6M of 1G
 
-----
-+
-
-. Stop the deployed application using the CLI
-+
-----
-> cf stop env
-----
-+
-You should see output similar to the following listing:
-+
-----
-> cf stop env
-Stopping app env in org student-42 / space development as student-42...
-OK
 ----
 +
 
-. Delete the deployed application using the CLI
-+
-----
-> cf delete env
-----
-+
-You should see output similar to the following listing:
-+
-----
-> cf delete env
-Really delete the app env?> yes
-Deleting app env in org student-42 / space development as student-42...
-OK
-----
-+
