@@ -11,7 +11,7 @@ In the this labs we'll explore some of these capabilities.
 One of the most important enablers of visibility into application behavior is logging.
 Effective management of logs has historically been difficult or required wiring into third party tools.
 Cloud Foundry's https://docs.pivotal.io/pivotalcf/1-9/loggregator/architecture.html[log aggregation] components simplify log management by assuming responsibility for it.
-Application developers need only log all messages to either 'Console.Write' in .NET or  `STDOUT` or `STDERR` in other languages, and the platform will capture these messages.
+Application developers need only log all messages to either 'System.out' in Java or  `STDOUT` or `STDERR` in other languages, and the platform will capture these messages.
 
 === For Developers
 
@@ -45,22 +45,14 @@ Connected, dumping recent logs for app paragdoshi-articulate in org PapaJohns / 
 <2> An API log event that corresponds to an event as shown in `cf events`
 <3> A CELL log event indicating the start of an application instance on that CELL.
 ====
-+
-.Application Logs
-====
-----
-2017-01-25T16:50:45.95-0500 [APP/0]      OUT Kaboom.
-2017-01-25T16:53:44.43-0500 [APP/0]      OUT Exit status -1
-----
-====
-+
+
 As you can see, Cloud Foundry's log aggregation components capture both application logs and CF component logs relevant to your application.
 These events are properly interleaved based on time, giving you an accurate picture of events as they transpired across the system.  In this case we output Kaboom when the kill button is pressed in the .NET app
 
 . To get a running ``tail'' of the application logs rather than a dump, simply type:
 +
 ----
-> cf logs env
+> cf logs paragdoshi-articulate
 ----
 +
 You can try various things like refreshing the browser and triggering stop/start events to see logs being generated.
@@ -69,10 +61,10 @@ You can try various things like refreshing the browser and triggering stop/start
 
 Cloud Foundry's https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/#nsync-bbs[components] actively monitors the health of our application processes and will restart them should they crash.
 
-. If you don't have one already running, start a log tail for `env`.  Alternatively, you could view the logs using the papertrail app.
+. If you don't have one already running, start a log tail for your articulate application. 
 +
 ----
-> cf logs env
+> cf logs paragdoshi-articulate
 ----
 
 . If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, and click on the ``Kill Switch'' button. This button will trigger an Environment.Exit(-1) causing the Health Manager to observe an application instance crash:
