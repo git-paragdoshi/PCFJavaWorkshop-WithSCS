@@ -11,8 +11,8 @@ In the next two labs we'll explore Pivotal Cloud Foundry operations.
 . Now let's increase the number of running application instances to 3.  :
 +
 ----
-> cf scale env -i 3
-Scaling app env in org student-42 / space development as student-42...
+> cf scale paragdoshi-articulate -i 3
+Scaling app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
 ----
@@ -23,22 +23,22 @@ In reporting `OK`, the CLI is letting you know that the additional requested ins
 +
 ====
 ----
-> cf app env
-Showing health and status for app env in org student-42 / space development as student-42...
+> cf app paragdoshi-articulate
+Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
 requested state: started
 instances: 3/3
-usage: 512M x 3 instances
-urls: env-patellate-catatonia.cfapps.haas-65.pez.pivotal.io
-last uploaded: Wed Jan 25 13:39:36 UTC 2017
-stack: windows2012R2
-buildpack: binary_buildpack
+usage: 1G x 3 instances
+urls: paragdoshi-articulate.cfapps.io
+last uploaded: Mon Apr 3 17:02:55 UTC 2017
+stack: cflinuxfs2
+buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
 
-     state     since                    cpu    memory           disk         details
-#0   running   2017-01-25 08:58:25 AM   0.0%   115.5M of 512M   3.8M of 1G
-#1   running   2017-01-25 03:14:02 PM   0.0%   108.6M of 512M   3.8M of 1G
-#2   running   2017-01-25 03:14:02 PM   0.0%   108.6M of 512M   3.8M of 1G
+     state     since                    cpu      memory         disk           details
+#0   running   2017-04-03 01:04:52 PM   0.1%     442.9M of 1G   154.6M of 1G
+#1   running   2017-04-03 02:46:56 PM   212.4%   459.9M of 1G   154.6M of 1G
+#2   running   2017-04-03 02:46:52 PM   1.4%     434.5M of 1G   154.6M of 1G
 >
 ----
 ====
