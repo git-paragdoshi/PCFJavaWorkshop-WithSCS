@@ -99,7 +99,7 @@ As you have seen it is pretty easy to scale up or down using the cf CLI or Apps 
 . Navigate to http://run.pivotal.io and Log in, if redirected to login screen. 
 . After login, click on the 'Marketplace' link on the left hand menu option as shown in the image below:
 +
-image::../../Common/images/marketplace.png[]
+image::../../Common/images/marketplace-link.png[]
 
 == Zero Downtime Deployment
 
