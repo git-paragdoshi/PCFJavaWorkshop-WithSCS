@@ -22,7 +22,7 @@ Time | Session
 1:15  PM - 1:30 PM  | _Labs Review_ 
 1:30 PM - 2:00 PM | Session 2: _Cloud Native Design and Microservices with Spring Cloud Services_
 2:00 PM - 2:30 PM | Lab 4: _Dynamic Configuration Loading with Spring Cloud Services - Config Server_
-2:30 PM - 3:15 PM | Lab 5: _MicroServices Registration and Discovery with Spring Cloud Services - Eureka _
+2:30 PM - 3:15 PM | Lab 5: _MicroServices Registration and Discovery with Spring Cloud Services - Eureka_
 3:15 PM - 3:30 PM | _Break_
 3:30 PM - 4:00 PM | Lab 6: _Fault Tolerant Design with Spring Cloud Services - Hystrix_
 4:00 PM - 4:15 PM | _Labs Review_
