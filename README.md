@@ -45,7 +45,7 @@ $ git fetch --all
 **Prerequisites**
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli)
 - [Git Client](https://git-scm.com/downloads)
-- [Intellij Version 2016.1 or later)](https://https://www.jetbrains.com/idea/download/)
+- [Intellij Version 2016.1 or later](https://https://www.jetbrains.com/idea/download/)
 - PWS account registration complete at http://run.pivotal.io
 
 ## Course Materials
