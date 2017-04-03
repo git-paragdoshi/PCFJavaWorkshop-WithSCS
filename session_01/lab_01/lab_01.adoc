@@ -17,7 +17,7 @@ In this lab we will push a Java Spring Boot web application to cloud foundry.
 
 . Open a command prompt in Windows (or Terminal on Mac) Navigate to /PCFJavaWorkshop-WithSCS/deployables/articulate directory
 . Open the manifest.yml file in your text editor and update the username to your unique username so that we can differentiate your app from other workshop attendee's app.
-For example, below is the name value changes in my manifest.yml file. Remember to preserve the space after the :
+For example, below is the name value changes in my manifest.yml file. Remember to preserve the space after _name:_
  
  Previous value:
  name: changeMeToUniqueUsername-articulate
