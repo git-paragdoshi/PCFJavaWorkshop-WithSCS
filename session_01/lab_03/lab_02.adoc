@@ -1,4 +1,4 @@
-= Lab 3 - Scaling and Operating Applications
+= Lab 2 - Scaling, Auto Scaling and Zero Downtime Deployments
 
 [abstract]
 --
