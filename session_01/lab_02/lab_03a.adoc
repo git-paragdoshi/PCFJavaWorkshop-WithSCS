@@ -1,4 +1,4 @@
-= Lab 2 - Monitoring, Metrics and HA Lab
+= Lab 3 - Monitoring, Metrics and HA Lab
 
 [abstract]
 --
