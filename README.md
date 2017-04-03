@@ -5,8 +5,8 @@ Java workshop with PCF and SPC labs
 Cloud Native Application Design and Architectures with Pivotal Cloud Foundry
 
 ## Instructors
-- Parag Doshi, Senior Platform Architect, pdoshi@pivotal.io
-- Brian Jimerson, Advisory Platform Architect, bjimerson@pivotal.io
+- Parag Doshi, Platform Architect, pdoshi@pivotal.io
+- David Dieruf, Platform Architect, ddieruf@pivotal.io
 
 ## Agenda
 
@@ -18,19 +18,20 @@ Time | Session
 10:15 AM - 10:45 AM | Lab 1: _Pushing Your First Application_
 10:45 AM - 11:00 AM | _Break_
 11:00 AM - 11:15 AM | _Labs Review_
-11:15 AM - 11:30 AM | Lab 2: _Binding to Cloud Foundry Services_
-11:30 AM - 12:00 PM | Lab 3: _Scaling and Operating Applications_
-12:00 PM - 12:30 PM | Lab 4: _Monitoring Applications_
+11:15 AM - 11:30 AM | Lab 2: _Logging, Scaling and HA Lab_
+11:30 AM - 12:00 PM | Lab 3: _Auto Scaling and Zero Downtime Deployment Lab_
+12:00 PM - 12:30 PM | Lab 4: _Monitoring and Metrics Applications_
 12:30 PM - 1:15 PM  | _Lunch_
 1:15  PM - 1:30 PM  | _Labs Review_ 
-1:30 PM - 2:00 AM | Session 2: _Cloud Native Design and Microservices_
-2:00 PM - 2:30 PM | Lab 5: _Deploying an ASP.NET MVC Application_
-2:30 PM - 3:00 PM | Lab 6: _Managing application logs from a .NET application_
-3:00 PM - 3:15 PM | _Break_
-3:15 PM - 3:30 PM | _Labs Review_
-3:30 PM - 4:00 PM | Session 3: _Spring Cloud Netflix & SteelToe_
-4:00 PM - 4:30 PM | Lab 7: _Using Config Server from a .NET application_
-4:30 PM - 5:00 PM | Wrap-Up & Q&A
+1:30 PM - 2:00 PM | Session 2: _Cloud Native Design and Microservices with Spring Cloud Services_
+2:00 PM - 2:30 PM | Lab 5: _Dynamic Configuration Loading with Spring Cloud Services - Config Server_
+2:30 PM - 3:15 PM | Lab 6: _MicroServices Registration and Discovery with Spring Cloud Services - Eureka _
+3:15 PM - 3:30 PM | _Break_
+3:30 PM - 4:00 PM | Lab 7: _Fault Tolerant Design with Spring Cloud Services - Hystrix_
+4:00 PM - 4:15 PM | _Labs Review_
+4:15 PM - 4:45 PM | Session 3: Continuous Integration/Continuous Delivery Development with PCF
+4:45 PM - 5:00 PM | Demo: _CI/CD pipeline with Jenkins and PCF_
+5:00 PM - 5:30 PM | Wrap-Up & Q&A
 
 This is a _loose_ schedule for the day. We will adjust as necessary based on our pace through the material.
 
