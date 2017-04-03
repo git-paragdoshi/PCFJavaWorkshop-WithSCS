@@ -40,6 +40,12 @@ For example, below is the name value changes in my manifest.yml file. Remember t
 +
 ----
 > cf api https://api.run.pivotal.io
+
+Setting api endpoint to https://api.run.pivotal.io...
+OK
+
+API endpoint:   https://api.run.pivotal.io
+API version:    2.75.0
 ----
 and login to Pivotal Cloudfoundry:
 +
