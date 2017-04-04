@@ -106,7 +106,8 @@ image::../../Common/images/marketplace-link.png[]
 image::../../Common/images/autoscaler.png[]
 
 . Click on 'Select this plan' and fill in the following details: give a unique name in the 'Instance Name' field. The Add to Space will be auto-populated with the 'workshop' space. Choose your articulate application from the 'Bind to App' dropdown. Click on 'Add' to create an instance of App autoscaler and bind it to your app.
-+ image::../../Common/images/bind-autoscaler.png[]
++ 
+image::../../Common/images/bind-autoscaler.png[]
 
 . After the auto scaler service is successfully created and bound to your app, you would be taken to the following service screen:
 + 
@@ -148,6 +149,7 @@ image::../../Common/images/app-traffic.png[]
 > cf push paragdoshi-articulate-v2
 ----
 +
+
 . When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, v2 is the newer version of your app that you want to release to the world. 
 +
 image::../../Common/images/same-apps-diff-routes.png[]
