@@ -122,7 +122,7 @@ image::../../Common/images/edit-autoscaler.png[]
 
 . Click on the toggle button to Enable Autoscaler for your articulate app. 
 + 
-image::../../Common/images/enable-autoscaler.png[]
+image::../../Common/images/autoscaler-enabled.png[]
 
 . Going back to App Manager and clicking on your articulate app, you will notice that within 30 odd seconds or less, your app will get automatically auto-scaled to two instances. 
 + 
