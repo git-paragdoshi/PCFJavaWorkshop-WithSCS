@@ -251,9 +251,9 @@ Along with the logs and events streams, application developers and operators hav
 
 +
 image::../../Common/images/pcf-metrics-link.png[]
-
++
 You can view Events, Container and Network metrics and also the logs in one easy to use interface. 
 +
 image::../../Common/images/pcf-metrics-data.png[]
-
++
 
