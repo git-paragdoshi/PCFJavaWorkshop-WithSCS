@@ -143,14 +143,37 @@ image::../../Common/images/app-route.png[]
 image::../../Common/images/app-traffic.png[]
 
 . In the command line window navigate to the /deployables/articulate directory, we will push the same articulate app but with a different name (add a -v2 at the end of the name). It will be assigned a default route in the format appname.domainname.
-
+----
 > cf push paragdoshi-articulate-v2
+----
 
-. When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, this is the newer version of your app that you want to release to the world. 
+. When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, v2 is the newer version of your app that you want to release to the world. 
 +
 image::../../Common/images/same-apps-diff-routes.png[]
 
-. When you click on the v2 articulate app link, it will take you to the articulate app instance that is servicing that particular route. In App Manager, add an additional route to v2 version of the app. This additional route will be the same route as serviced by the first articulate app. In essence, we are trying  
+. When you click on the v2 articulate app link, it will take you to the articulate app instance that is servicing that particular route. In App Manager, add an additional route to v2 version of the app. This additional route will be the same route as serviced by the first articulate app. In essence, we are trying to divert some amount of traffic to the newer version of the apps and the remaining traffic to the older version of the app. Click on the 'Route' link for the v2 app and click on 'Map a Route' button. In the text field, enter the host (sub-domain) of your previous application - in my case, it is paragdoshi-articulate. The domain name is available as a dropdown value on the screen. After adding another route, you will see something simiar to below:
++
+image::../../Common/images/add-old-route.png[]
+
+. Now, navigate back to your earlier articulate app, click on the Blue-Green link and if the simulation is still going on - click on Reset button and then hit 'Start'. You will notice that now the traffic is split between the two apps. The original app gets 2/3 of the traffic while the v2 app gets 1/3. Why? Because you have two instances running of the previous articulate app and one instance of v2 of the app.
++
+image::../../Common/images/shared-traffic.png[]
+
+. Navigate to App Manager, scale up an additional instance of v2 articulate app and scale down one instance of the previous articulate app. Go back to the articulate app, hit 'Reset' and then hit 'Start'. Now you should see 2/3 of the traffic diverted to v2 of the app and 1/3 of the traffic diverted to previous version of app.
++
+image::../../Common/images/new-traffic-pattern.png[]
+
+. Finally, navigate to App Manager and go to the previous articulate app, click on Routes and click on the red 'x' to remove the route. After removing the route, your previous app is now inaccessible to any user traffic.
+
++
+image::../../Common/images/removed-route.png[]
+
+. Go back to the articulate app and hit 'Reset' and then hit 'Start'. You will see that all traffic is now serviced by v2 of the app. You have successfully completed a zero downtime deployment!
++
+image::../../Common/images/v2-route-traffic.png[]
+
+
+
 
 
 
