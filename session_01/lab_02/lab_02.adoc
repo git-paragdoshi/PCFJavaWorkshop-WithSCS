@@ -132,6 +132,28 @@ image::../../Common/images/autoscaled.png[]
 
 == Zero Downtime Deployment
 
+For this lab, we will simulate a zero downtime deployment by using Routes and deploying the same articulate application and diverting traffic from one app to another.
+
+. When you navigate to your app in App Manager and click on 'Route' link, you will see that your app is bound to one Route which is in the appname.domainname format.
++
+image::../../Common/images/app-route.png[]
+
+. When you click on your app's route, it opens the app in a new window. Click on the Blue-Green menu option at the top and 'start' the simulation. This will send requests to the route and show which app is servicing the request for that route. As can be seen below, all requests are serviced by the articulate instance of your app.
++
+image::../../Common/images/app-traffic.png[]
+
+. In the command line window navigate to the /deployables/articulate directory, we will push the same articulate app but with a different name (add a -v2 at the end of the name). It will be assigned a default route in the format appname.domainname.
+
+> cf push paragdoshi-articulate-v2
+
+. When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, this is the newer version of your app that you want to release to the world. 
++
+image::../../Common/images/same-apps-diff-routes.png[]
+
+. When you click on the v2 articulate app link, it will take you to the articulate app instance that is servicing that particular route. In App Manager, add an additional route to v2 version of the app. This additional route will be the same route as serviced by the first articulate app. In essence, we are trying  
+
+
+
 There are two ways to discover what routes, or HTTP URLs, are ampped to an application
 The first is available via the CLI. Just type:
 
