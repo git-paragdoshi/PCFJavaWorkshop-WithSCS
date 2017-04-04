@@ -102,25 +102,31 @@ As you have seen it is pretty easy to scale up or down using the cf CLI or Apps 
 image::../../Common/images/marketplace-link.png[]
 
 . Click on App Autoscaler and you will see a screen similar to the one below. 
-+ image::../../Common/images/autoscaler.png[]
++ 
+image::../../Common/images/autoscaler.png[]
 
 . Click on 'Select this plan' and fill in the following details: give a unique name in the 'Instance Name' field. The Add to Space will be auto-populated with the 'workshop' space. Choose your articulate application from the 'Bind to App' dropdown. Click on 'Add' to create an instance of App autoscaler and bind it to your app.
 + image::../../Common/images/bind-autoscaler.png[]
 
 . After the auto scaler service is successfully created and bound to your app, you would be taken to the following service screen:
-+ image::../../Common/images/autoscaler-service-page.png
++ 
+image::../../Common/images/autoscaler-service-page.png
 
 Click on the App Autoscaler service and you will go into the details page. Click on the 'Manage' link as shown below:
-+ image::../../Common/images/manage-autoscaler.png
++ 
+image::../../Common/images/manage-autoscaler.png
 
 . This will open the Autoscaler dashboard. Click on 'Instance Limits' edit link and enter 2 for Minimum and 5 for Maximum. Hit Save.
-+ image::../../Common/images/edit-autoscaler.png
++ 
+image::../../Common/images/edit-autoscaler.png
 
 . Click on the toggle button to Enable Autoscaler for your articulate app. 
-+ image::../../Common/images/enable-autoscaler.png
++ 
+image::../../Common/images/enable-autoscaler.png
 
 . Going back to App Manager and clicking on your articulate app, you will notice that within 30 odd seconds or less, your app will get automatically auto-scaled to two instances. 
-+ image::../../Common/images/autoscaled.png
++ 
+image::../../Common/images/autoscaled.png
 
 
 
