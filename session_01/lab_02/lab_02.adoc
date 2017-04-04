@@ -143,10 +143,11 @@ image::../../Common/images/app-route.png[]
 image::../../Common/images/app-traffic.png[]
 
 . In the command line window navigate to the /deployables/articulate directory, we will push the same articulate app but with a different name (add a -v2 at the end of the name). It will be assigned a default route in the format appname.domainname.
++
 ----
 > cf push paragdoshi-articulate-v2
 ----
-
++
 . When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, v2 is the newer version of your app that you want to release to the world. 
 +
 image::../../Common/images/same-apps-diff-routes.png[]
