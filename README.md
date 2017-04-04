@@ -26,7 +26,7 @@ Time | Session
 3:15 PM - 3:30 PM | _Break_
 3:30 PM - 4:00 PM | Lab 6: _Fault Tolerant Design with Spring Cloud Services - Hystrix_
 4:00 PM - 4:15 PM | _Labs Review_
-4:15 PM - 4:45 PM | Session 3: Continuous Integration/Continuous Delivery Development with PCF
+4:15 PM - 4:45 PM | Session 3: Continuous Integration/Continuous Delivery with PCF
 4:45 PM - 5:00 PM | Demo: _CI/CD pipeline with Jenkins and PCF_
 5:00 PM - 5:30 PM | Wrap-Up & Q&A
 
@@ -64,5 +64,5 @@ $ git fetch --all
   - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab_06.adoc)
   - [Lab Review - Spring Cloud Services](session_02/Labs_Review_01.pdf)
 
-#### Session 3 [(Slides)](session_03/Session_03.pdf): _Continuous Integration/Continuous Delivery Development with PCF_
+#### Session 3 [(Slides)](session_03/Session_03.pdf): _Continuous Integration/Continuous Delivery with PCF_
   - [Demo - CI/CD pipeline with Jenkins and PCF](session_03/demo/demo.adoc)
