@@ -248,11 +248,11 @@ time                          event                     actor                   
 
 == PCF Metrics
 
-Along with the logs and events streams, application developers and operators have another tool available to them to monitor the health of their applications - PCF Metrics. And this tool can be accessed by clicking the 'View in PCF Metrics' link for your application in PCF. Log in with your credentials if redirected to log in page.
+. Along with the logs and events streams, application developers and operators have another tool available to them to monitor the health of their applications - PCF Metrics. And this tool can be accessed by clicking the 'View in PCF Metrics' link for your application in PCF. Log in with your credentials if redirected to log in page.
 +
 image::../../Common/images/pcf-metrics-link.png[]
 
-You can view Events, Container and Network metrics and also the logs in one easy to use interface. 
+. You can view Events, Container and Network metrics and also the logs in one easy to use interface. 
 +
 image::../../Common/images/pcf-metrics-data.png[]
 
