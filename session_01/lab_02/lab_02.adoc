@@ -177,55 +177,8 @@ image::../../Common/images/removed-route.png[]
 +
 image::../../Common/images/v2-route-traffic.png[]
 
+== Clean Up
 
+. Delete the v2 articulate app - Navigate to v2 articulate app and click on 'Settings'. Scroll down to the end of the page and there will be a 'Delete App' button. Click on it, re-confirm the delete and this will delete v2 articulate app.
 
-
-
-
-There are two ways to discover what routes, or HTTP URLs, are ampped to an application
-The first is available via the CLI. Just type:
-
-----
-> cf app env
-Showing health and status for app env in org student-42 / space development as student-42...
-OK
-
-requested state: started
-instances: 1/1
-usage: 512M x 1 instances
-urls: env-patellate-catatonia.cfapps.haas-65.pez.pivotal.io
-last uploaded: Wed Jan 25 13:39:36 UTC 2017
-stack: windows2012R2
-buildpack: binary_buildpack
-
-     state     since                    cpu    memory         disk         details
-#0   running   2017-01-25 08:58:25 AM   0.0%   114M of 512M   3.8M of 1G
-
-----
-
-and you'll see the list of routes in the section that says _urls_.
-
-The second way is via the Apps Manager UI.  Click on the _env_ application to view application details.  Select the _Routes_ tab to view a list of mapped routes:
-
-image::../../Common/images/lab-routes.png[]
-
-. We can easily add an additional route by clicking on _+ Map a Route_ and supplying the new hostname:
-+
-image::../../Common/images/lab-add-route.png[]
-
-. Navigate to the new URL in your browser window.  You should see that same application displayed!
-+
-image::../../Common/images/lab-new-route.png[]
-
-. We can just as easily remove a route by clicking on _x icon_ on the route you wish to remove.
-+
-image::../../Common/images/lab-unmap-route.png[]
-+
-If you navigate to that URL you'll receive a HTTP 404 response
-+
-image::../../Common/images/lab-no-route.png[]
-
-. This is how blue-green deployments are accomplished. Check the https://docs.pivotal.io/pivotalcf/1-9/devguide/deploy-apps/blue-green.html[documentation] for detailed instructions.
-+
-image::../../Common/images/blue-green.png[]
-
+. Re-add the orgiinal route back to your previous articulate app so that it is again accessible with that route. In my case, the route name was paragdoshi-articulate. Click on the route and make sure your app is accessible again.
