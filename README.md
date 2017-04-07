@@ -28,7 +28,7 @@ Time | Session
 4:00 PM - 4:15 PM | _Labs Review_
 4:15 PM - 4:45 PM | Session 3: Continuous Integration/Continuous Delivery with PCF
 4:45 PM - 5:00 PM | Demo: _CI/CD pipeline with Jenkins and PCF_
-5:00 PM - 5:30 PM | Wrap-Up & Q&A
+5:00 PM - 5:30 PM | Wrap-Up & Q&A - Lessons Learnt - what doesn't work.
 
 This is a _loose_ schedule for the day. We will adjust as necessary based on our pace through the material.
 
