@@ -230,54 +230,26 @@ Now we will add the functionality to read the 'greeting' value from a git repo t
 
 -----
 
-. When we introduced the Spring Cloud Services Starter Config Client dependency Spring Security will also be included (Config servers will be protected by OAuth2).  However, this will also enable basic authentication to all our service endpoints.  Add the following configuration to */cloud-native-spring/src/main/resources/application.yml*:
+. When we introduced the Spring Cloud Services Starter Config Client dependency Spring Security will also be included (Config servers will be protected by OAuth2).  However, this will also enable basic authentication to all our service endpoints.  Add the following configuration to *application.properties*:
+
 +
-[source, yaml]
 ---------------------------------------------------------------------
-security:
-  basic:
-    enabled:  false
+security.basic.enabled=false
 ---------------------------------------------------------------------
 
-. We'll also want to give our Spring Boot App a name so that it can lookup application-specific configuration from the config server later.  Add the following configuration to */cloud-native-spring/src/main/resources/application.yml*:
+. We'll also want to give our Spring Boot App a name so that it can lookup application-specific configuration from the config server later.  Add the following configuration to *application.properties*:
+
 +
-[source, yaml]
 ---------------------------------------------------------------------
-spring:
-  application:
-    name: cloud-native-spring
+spring.application.name=pdoshi-scsapp
 ---------------------------------------------------------------------
 
-. Complete YML:
+. Complete application.properties
 +
-[source, yaml]
 ---------------------------------------------------------------------
-spring:
-  application:
-    name: cloud-native-spring
-
-endpoints: # add this section
-  sensitive: false
-
-info: # add this section
-  build:
-    artifact: @project.artifactId@
-    name: @project.name@
-    description: @project.description@
-    version: @project.version@
-
-management:
-  security:
-    enabled: false
-  info:
-    git:
-      mode: full
-  cloudfoundry:
-    enabled: true
-    skip-ssl-validation: true
-
-security:
-  basic:
+greeting="Hello"
+security.basic.enabled=false
+spring.application.name=pdoshi-scsapp
 ---------------------------------------------------------------------
 
 == Run the _cloud-native-spring_ Application and verify dynamic config is working
