@@ -140,14 +140,14 @@ image::../../Common/images/scsapp-index-page.png[]
 
 Now we will set the groundwork of reading dynamic value in our application. Make the following changes:
 
-. In the ServiceController.java, add the following snippet of code above the index() method which will create a variable _greeting and store a default value of "Hi":
+. In the ServiceController.java, add the following snippet of code above the index() REST service method which will create a variable _greeting and store a default value of "Hi":
 +
 -----
 @Value("${greeting:Hi}")
 	private String _greeting;
 -----
 
-. In the ServiceController.java, update the index() method to store the value of _greeting in the model object:
+. In the ServiceController.java, update the index() REST service method to store the value of _greeting in the model object:
 
 +
 -----
@@ -193,96 +193,42 @@ greeting="Hello"
 image::../../Common/images/scsapp-greeting-value.png[]
 
 
+== Add Spring Config functionality
+Now we will add the functionality to read the 'greeting' value from a git repo that is backed by Spring Cloud Config service. Make the following changes to the application:
 
+. Open your Maven POM file and add the following dependencies to enable SCS and actuator end-point so we can see the environment values returned for the config service:
 
-
-
-
-
-
-== Update _Hello_ REST service
-
-. These features are added by adding _spring-cloud-services-starter-config-client_ to the classpath.  Open your Maven POM found here: */cloud-native-spring/pom.xml*.  Add the following spring cloud services dependency:
 +
 [source, xml]
----------------------------------------------------------------------
+-----
 <dependency>
-  <groupId>io.pivotal.spring.cloud</groupId>
-	<artifactId>spring-cloud-services-starter-config-client</artifactId>
+	<groupId>io.pivotal.spring.cloud</groupId>
+	<artifactId>spring-cloud-services-dependencies</artifactId>
+	<version>1.4.1.RELEASE</version>
+	<type>pom</type>
 </dependency>
----------------------------------------------------------------------
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-dependencies</artifactId>
+	<version>Brixton.SR7</version>
+	<type>pom</type>
+</dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-commons</artifactId>
+	<version>1.1.8.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>io.pivotal.spring.cloud</groupId>
+	<artifactId>spring-cloud-services-starter-config-client</artifactId>
+	<version>1.4.1.RELEASE</version>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
 
-. We also need to add a general entry for Spring Cloud dependency management.  Add this snippet to your POM:
-+
-[source, xml]
----------------------------------------------------------------------
-<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>io.pivotal.spring.cloud</groupId>
-				<artifactId>spring-cloud-services-dependencies</artifactId>
-				<version>1.3.1.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.SR4</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
----------------------------------------------------------------------
-
-. Add an @Value annotation, private field, and associated usage to the class _io.pivotal.CloudNativeSpringApplication_ (/cloud-native-spring/src/main/java/io/pivotal/CloudNativeSpringApplication.java):
-+
-[source, java, numbered]
----------------------------------------------------------------------
-    @Value("${greeting:Hola}")
-    private String _greeting;
-
-    @RequestMapping("/")
-    public String hello() {
-        return _greeting + " World!";
-    }
----------------------------------------------------------------------
-+
-Completed:
-+
-[source,java,numbered]
----------------------------------------------------------------------
-package io.pivotal;
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.rest.RepositoryRestMvcAutoConfiguration;
-import org.springframework.context.annotation.Import;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@SpringBootApplication
-@RestController
-@EnableJpaRepositories
-@Import(RepositoryRestMvcAutoConfiguration.class)
-public class CloudNativeSpringApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CloudNativeSpringApplication.class, args);
-	}
-
-	@Value("${greeting:Hola}")
-	private String _greeting;
-
-	@RequestMapping("/")
-	public String hello() {
-		return _greeting + " World!";
-	}
-}
----------------------------------------------------------------------
+-----
 
 . When we introduced the Spring Cloud Services Starter Config Client dependency Spring Security will also be included (Config servers will be protected by OAuth2).  However, this will also enable basic authentication to all our service endpoints.  Add the following configuration to */cloud-native-spring/src/main/resources/application.yml*:
 +
