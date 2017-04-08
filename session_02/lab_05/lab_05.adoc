@@ -14,6 +14,37 @@ image::../../Common/images/intellij-starter.png[]
 +
 image::../../Common/images/intellij-project-selection.png[] 
 
+. In the Import Project step, select 'Import Project from external model' and select Maven:
++
+image::../../Common/images/intellij-import-maven-project.png[] 
+
+. In the Project Settings page, retain all the defaults and click Next:
++
+image::../../Common/images/intellij-project-defaults.png[] 
+
+. In the Select Maven Projects to Import step, select the com.example.scsapp:0.0.1-SNAPSHOT :
++
+image::../../Common/images/intellij-maven-project-selected.png[] 
+
+. Select 1.8 JDK and click Next:
++
+image::../../Common/images/intellij-jdk-selection.png[] 
+
+. Enter project name 'scsapp', select your project file location and click Finish:
++
+image::../../Common/images/intellij-project-name.png[]
+
+. The scsapp project should get loaded and take you to the project view. Click on 'Build' menu and select 'Build Project' to ensure there are no compilation errors:
+
+
+
+
+
+
+
+
+
+
 == Update _Hello_ REST service
 
 . These features are added by adding _spring-cloud-services-starter-config-client_ to the classpath.  Open your Maven POM found here: */cloud-native-spring/pom.xml*.  Add the following spring cloud services dependency:
