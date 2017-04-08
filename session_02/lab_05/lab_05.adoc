@@ -46,54 +46,156 @@ image::../../Common/images/intellij-project-name.png[]
 +
 image::../../Common/images/intellij-project-imported.png[]
 
+
+. Navigate to 'View - Tool Windows - Maven Projects' and run the 'package' command. This should generate the scsapp-0.0.1-SNAPSHOT.jar' in the 'target' folder:
++
+image::../../Common/images/intellij-jar-generation.png[]
+
+. Open the manifest.yml file and change the app name to include your unique user name:
++
+image::../../Common/images/manifest-change-app-name.png[]
+
+
 == Push to CF
 
-. Navigate to your project directory on the command prompt and run the following maven command:
+. Navigate to the project directory on the command prompt and run the 'cf push' command:
 
 +
 -----
-pdoshi@Parags-MacBook-Pro:~/Downloads/starter-project/SCSApp$ mvn clean package
-[INFO] Scanning for projects...
-[INFO]                                                                         
-[INFO] ------------------------------------------------------------------------
-[INFO] Building scsworkshop 0.0.1-SNAPSHOT
-[INFO] ------------------------------------------------------------------------
-[INFO] 
-[INFO] --- maven-clean-plugin:2.6.1:clean (default-clean) @ scsapp ---
-[INFO] Deleting /Users/pdoshi/Downloads/starter-project/SCSApp/target
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ scsapp ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 1 resource
-[INFO] Copying 4 resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ scsapp ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 3 source files to /Users/pdoshi/Downloads/starter-project/SCSApp/target/classes
-[INFO] 
-[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ scsapp ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/pdoshi/Downloads/starter-project/SCSApp/src/test/resources
-[INFO] 
-[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ scsapp ---
-[INFO] No sources to compile
-[INFO] 
-[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ scsapp ---
-[INFO] No tests to run.
-[INFO] 
-[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ scsapp ---
-[INFO] Building jar: /Users/pdoshi/Downloads/starter-project/SCSApp/target/scsapp-0.0.1-SNAPSHOT.jar
-[INFO] 
-[INFO] --- spring-boot-maven-plugin:1.5.2.RELEASE:repackage (default) @ scsapp ---
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 2.032 s
-[INFO] Finished at: 2017-04-08T12:16:10-04:00
-[INFO] Final Memory: 30M/256M
-[INFO] ------------------------------------------------------------------------
+pdoshi@Parags-MacBook-Pro:~/Downloads/starter-project/SCSApp$ cf push
+Using manifest file /Users/pdoshi/Downloads/starter-project/SCSApp/manifest.yml
+
+Using stack cflinuxfs2...
+OK
+Updating app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+
+Uploading pdoshi-scsapp...
+Uploading app files from: /var/folders/1w/mpbw8_5s2_j491wwnlcc7vv40000gn/T/unzipped-app874964493
+Uploading 347.3K, 96 files
+Done uploading               
+OK
+
+Stopping app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+
+Starting app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Downloading java_buildpack...
+Downloaded java_buildpack
+Creating container
+Successfully created container
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (18.6M)
+-----> Java Buildpack Version: v3.14 (offline) | https://github.com/cloudfoundry/java-buildpack.git#d5d58c6
+-----> Downloading Open Jdk JRE 1.8.0_121 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_121.tar.gz (found in cache)
+       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.5s)
+-----> Downloading Open JDK Like Memory Calculator 2.0.2_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-2.0.2_RELEASE.tar.gz (found in cache)
+       Memory Settings: -Xms681574K -Xss349K -Xmx681574K -XX:MaxMetaspaceSize=104857K -XX:MetaspaceSize=104857K
+-----> Downloading Container Certificate Trust Store 2.0.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-certificate-trust-store/container-certificate-trust-store-2.0.0_RELEASE.jar (found in cache)
+       Adding certificates to .java-buildpack/container_certificate_trust_store/truststore.jks (0.8s)
+-----> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (found in cache)
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (109B)
+Uploaded droplet (64M)
+Uploading complete
+Destroying container
+Successfully destroyed container
+
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App pdoshi-scsapp was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher`
+
+Showing health and status for app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+
+requested state: started
+instances: 1/1
+usage: 1G x 1 instances
+urls: pdoshi-scsapp.cfapps.io
+last uploaded: Sat Apr 8 18:41:22 UTC 2017
+stack: cflinuxfs2
+buildpack: java_buildpack
+
+     state     since                    cpu    memory         disk           details
+#0   running   2017-04-08 02:42:25 PM   0.0%   378.9M of 1G   142.8M of 1G
 
 -----
+
+. Navigate to your scsapp in a browser and you should see a simple html page output, similar to the one below:
+
++
+image::../../Common/images/scsapp-index-page.png[]
+
+== Add ability to read dynamic Value
+
+Now we will set the groundwork of reading dynamic value in our application. Make the following changes:
+
+. In the ServiceController.java, add the following snippet of code above the index() method which will create a variable _greeting and store a default value of Hi:
++
+-----
+@Value("${greeting:Hi}")
+	private String _greeting;
+-----
+
+. In the ServiceController.java, update the index() method to store the value of _greeting in the model object:
+
++
+-----
+model.addAttribute("greeting", _greeting);
+-----
+
+The complete ServiceController.java will look like this:
+
++
+-----
+package com.example;
+
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Value;
+
+@Controller
+public class ServicesController {
+
+	@Value("${greeting:Hi}")
+	private String _greeting;
+
+	
+	@RequestMapping("/")
+	public String index(HttpServletRequest request, Model model) throws Exception {
+		model.addAttribute("greeting", _greeting);
+		return "index";
+	}
+}
+-----
+
+. Override the default value of "Hi" in the applications.properties by adding this line in that file:
+
++
+-----
+greeting="Hello"
+-----
+
+. Run the 'package' task of Maven, go to the command prompt and 'cf push' the application. Refreshing the browser should show the dynamic value of greeting:
++
+image::../../Common/images/scsapp-greeting-value.png[]
+
+
+
 
 
 
