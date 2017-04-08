@@ -4,7 +4,7 @@ In this lab we'll utilize Spring Boot and Spring Cloud to configure our applicat
 
 == Import Starter Project in Intellij
 
-. in your git clone directory, there will be a sub-directory named 'starter-project'. In that directory, there will be a zip archive file named 'SCSApp.zip'. Un-zip that file into any directory. After un-zipping that file, import it as a Maven project in Intellij by following these steps:
+in your git clone directory, there will be a sub-directory named 'starter-project'. In that directory, there will be a zip archive file named 'SCSApp.zip'. Un-zip that file into any directory. After un-zipping that file, import it as a Maven project in Intellij by following these steps:
 
   . blah
 
