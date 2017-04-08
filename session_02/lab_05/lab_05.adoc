@@ -7,38 +7,93 @@ In this lab we'll utilize Spring Boot and Spring Cloud to configure our applicat
 in your git clone directory, there will be a sub-directory named 'starter-project'. In that directory, there will be a zip archive file named 'SCSApp.zip'. Un-zip that file into any directory. After un-zipping that file, import it as a Maven project in Intellij by following these steps:
 
 . Start Intellij and use the 'Import Project option':
+
 +
 image::../../Common/images/intellij-starter.png[]
 
 . In the project selection step, navigate to your directory where you un-zipped the file and select 'SCSApp':
+
 +
 image::../../Common/images/intellij-project-selection.png[] 
 
 . In the Import Project step, select 'Import Project from external model' and select Maven:
+
 +
 image::../../Common/images/intellij-import-maven-project.png[] 
 
 . In the Project Settings page, retain all the defaults and click Next:
+
 +
 image::../../Common/images/intellij-project-defaults.png[] 
 
 . In the Select Maven Projects to Import step, select the com.example.scsapp:0.0.1-SNAPSHOT :
+
 +
 image::../../Common/images/intellij-maven-project-selected.png[] 
 
 . Select 1.8 JDK and click Next:
+
 +
 image::../../Common/images/intellij-jdk-selection.png[] 
 
 . Enter project name 'scsapp', select your project file location and click Finish:
+
 +
 image::../../Common/images/intellij-project-name.png[]
 
 . The scsapp project should get loaded and take you to the project view. Click on 'Build' menu and select 'Build Project' to ensure there are no compilation errors:
 
++
+image::../../Common/images/intellij-project-imported.png[]
 
+== Push to CF
 
+. Navigate to your project directory on the command prompt and run the following maven command:
 
++
+-----
+pdoshi@Parags-MacBook-Pro:~/Downloads/starter-project/SCSApp$ mvn clean package
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building scsworkshop 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.6.1:clean (default-clean) @ scsapp ---
+[INFO] Deleting /Users/pdoshi/Downloads/starter-project/SCSApp/target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ scsapp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ scsapp ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /Users/pdoshi/Downloads/starter-project/SCSApp/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ scsapp ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /Users/pdoshi/Downloads/starter-project/SCSApp/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ scsapp ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.18.1:test (default-test) @ scsapp ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- maven-jar-plugin:2.6:jar (default-jar) @ scsapp ---
+[INFO] Building jar: /Users/pdoshi/Downloads/starter-project/SCSApp/target/scsapp-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:1.5.2.RELEASE:repackage (default) @ scsapp ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.032 s
+[INFO] Finished at: 2017-04-08T12:16:10-04:00
+[INFO] Final Memory: 30M/256M
+[INFO] ------------------------------------------------------------------------
+
+-----
 
 
 
