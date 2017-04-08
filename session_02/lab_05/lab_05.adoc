@@ -140,7 +140,7 @@ image::../../Common/images/scsapp-index-page.png[]
 
 Now we will set the groundwork of reading dynamic value in our application. Make the following changes:
 
-. In the ServiceController.java, add the following snippet of code above the index() method which will create a variable _greeting and store a default value of Hi:
+. In the ServiceController.java, add the following snippet of code above the index() method which will create a variable _greeting and store a default value of "Hi":
 +
 -----
 @Value("${greeting:Hi}")
@@ -156,7 +156,6 @@ model.addAttribute("greeting", _greeting);
 
 The complete ServiceController.java will look like this:
 
-+
 -----
 package com.example;
 
@@ -183,9 +182,8 @@ public class ServicesController {
 }
 -----
 
-. Override the default value of "Hi" in the applications.properties by adding this line in that file:
+. Override the default value of "Hi" in the applications.properties by adding this line:
 
-+
 -----
 greeting="Hello"
 -----
