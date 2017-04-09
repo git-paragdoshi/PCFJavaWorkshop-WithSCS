@@ -327,10 +327,12 @@ image::../../Common/images/config-server-reinitializing.png[]
   - pdoshi-config-server
 ---------------------------------------------------------------------
 
-Complete file will look like this:
+. Complete manifest file will look like this:
 
 +
 image::../../Common/images/config-manifest-entry.png[]
+
+
 
 . Run the 'package' command for your application and 'cf push' the application from the command prompt.
 
