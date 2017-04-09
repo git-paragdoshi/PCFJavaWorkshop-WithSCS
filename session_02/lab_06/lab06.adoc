@@ -9,15 +9,15 @@ In this lab we'll utilize Spring Boot and Spring Cloud to make our SCSApp Applic
 [source, xml]
 ---------------------------------------------------------------------
 <dependency>
-			<groupId>io.pivotal.spring.cloud</groupId>
-			<artifactId>spring-cloud-services-starter-circuit-breaker</artifactId>
-			<version>1.4.1.RELEASE</version>
-	</dependency>
+	<groupId>io.pivotal.spring.cloud</groupId>
+	<artifactId>spring-cloud-services-starter-circuit-breaker</artifactId>
+	<version>1.4.1.RELEASE</version>
+</dependency>
 ---------------------------------------------------------------------
 
 . The first thing we need to add to our application is an @EnableCircuitBreaker annotation to the Spring Boot application. Add this annotation below the other ones on the ScsworkshopApplication declaration in the class ScsworkshopApplication.java:
 +
-[source, java, numbered]
+[source, java]
 ---------------------------------------------------------------------
 @SpringBootApplication
 @EnableFeignClients
@@ -31,17 +31,17 @@ public class ScsworkshopApplication {
 [source, java, numbered]
 ---------------------------------------------------------------------
 @Component
-	public class AttendeeClientFallback implements AttendeeClient {
-		@Override
-		public Resources<Attendee> getAttendees() {
-			//We'll just return an empty response
-			return new Resources(Collections.EMPTY_LIST);
-		}
-		@Override
-		public Attendee save (Attendee attendee) {
-			//We'll just return an empty response
-			return new Attendee();
-		}
+public class AttendeeClientFallback implements AttendeeClient {
+@Override
+	public Resources<Attendee> getAttendees() {
+	//We'll just return an empty response
+	return new Resources(Collections.EMPTY_LIST);
+	}
+	@Override
+	public Attendee save (Attendee attendee) {
+	//We'll just return an empty object
+	return new Attendee();
+	}
 ---------------------------------------------------------------------
 +
 . Also modify the _@FeignClient_ annotation to reference this class as the fallback in case of failure:
@@ -49,7 +49,7 @@ public class ScsworkshopApplication {
 [source, java, numbered]
 ---------------------------------------------------------------------
 @FeignClient("https://pdoshi-attendee-service", fallback = AttendeeClientFallback.class)
-	protected interface AttendeeClient {
+protected interface AttendeeClient {
 ---------------------------------------------------------------------
 +
 . Your Boot Application should now look like this ScsworkshopApplication_:
@@ -101,7 +101,7 @@ public class ScsworkshopApplication {
 		}
 		@Override
 		public Attendee save (Attendee attendee) {
-			//We'll just return an empty response
+			//We'll just return an empty object
 			return new Attendee();
 		}
 
