@@ -495,6 +495,9 @@ $ cf stop pdoshi-attendee-service
 ---------------------------------------------------------------------
 . Refresh the browser.  What happens?  Now you get a nasty error that is not very user friendly!
 
++
+image::../../Common/images/services-error-page.png[]
+
 . Next we'll learn how to make our UI Application more resilient in the case that our downstream services are unavailable.
 
 
