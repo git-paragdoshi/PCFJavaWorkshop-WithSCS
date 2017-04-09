@@ -67,7 +67,7 @@ spring:
 -----
 
 
-. Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance that we will create shortly. Complete listing is shown below:
+. Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance and the Eureka Service Registry instance that we will create shortly. Complete listing is shown below:
 +
 [source, yml]
 -----
@@ -80,6 +80,7 @@ applications:
   path: target/attendee-service-0.0.1-SNAPSHOT.jar
   services:
     - pdoshi-mysql-service
+    - pdoshi-service-registry
 -----
 
 . Run Maven *clean* and *package* - that should create attendee-service-0.0.1-SNAPSHOT.jar in the /target directory.
@@ -97,7 +98,16 @@ image::../../Common/images/app-manager-mysql-service.png[]
 +
 image::../../Common/images/app-manager-mysql-service-added.png[]
 
-. Go to the command prompt and issue a *cf services* command and you should see your newly created MySQL service created and available.
+. Now that our application is ready to read registry with an Eureka instance, we need to deploy one! This can be done through cloudfoundry using the services marketplace. Navigate to the Marketplace again and now select *Service Registry* service.
++
+image::../../Common/images/appmanager-service-registry.png[]
+
+. There is only one plan available. Click on 'Select this plan' button and give it the same unique name that you mentioned in the manifest.yml file. In my example, it is pdoshi-service-registry. Add it to the 'workshop' space. And do not bind any application at this time. It will take a few minutes for the instance to be created. After the instance is created, it will look similar to the image below:
+
++ 
+image::../../Common/images/appmanager-service-registry-created.png[] 
+
+.  Go to the command prompt and issue a *cf services* command and you should see your newly created MySQL and Service Registry service created and available.
 +
 [source, bash]
 -----
@@ -105,27 +115,25 @@ pdoshi@Parags-MacBook-Pro:~/demos/AttendeeServicesApp$ cf services
 Getting services in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 
-name                   service           plan       bound apps                last operation
-autoscale              app-autoscaler    standard   ddieruf-articulate        create succeeded
-pdoshi-config-server   p-config-server   standard   pdoshi-scsapp             update succeeded
-pdoshi-mysql-service   p-mysql           100mb      pdoshi-attendee-service   create succeeded
+name                      service              plan       bound apps           last operation
+autoscale                 app-autoscaler       standard   ddieruf-articulate   create succeeded
+pdoshi-config-server      p-config-server      standard   pdoshi-scsapp        update succeeded
+pdoshi-mysql-service      p-mysql              100mb                           create succeeded
+pdoshi-service-registry   p-service-registry   standard                        create succeeded
 -----
 
 . Navigate to your AttendeeServiceApp folder and do a *cf push*. You should see the 'Binding...' service message. 
 +
 [source, bash]
 -----
-pdoshi@Parags-MacBook-Pro:~/demos/AttendeeServicesApp$ cf push
-Using manifest file /Users/pdoshi/demos/AttendeeServicesApp/manifest.yml
+:
+OK
+Binding service pdoshi-mysql-service to app pdoshi-attendee-service in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+Binding service pdoshi-service-registry to app pdoshi-attendee-service in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+:
 
-Using stack cflinuxfs2...
-OK
-Creating app pdoshi-attendee-service in org PapaJohns / space workshop as pdoshi@pivotal.io...
-OK
-
-Using route pdoshi-attendee-service.cfapps.io
-Binding pdoshi-attendee-service.cfapps.io to pdoshi-attendee-service...
-OK
 -----
 
 . Ensure that your application has successfully started. 
