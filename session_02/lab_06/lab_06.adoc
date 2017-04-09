@@ -39,7 +39,7 @@ image::../../Common/images/intellij-attendee-services-app.png[]
 
 -----
 
-. Open the *AttendeeServiceApplication.java* and add the @EnableDiscoveryClient annotation at top of the class as shown below:
+. Thanks to Spring Cloud instructing your application to register with Eureka is as simple as adding a single annotation to your app! Add an @EnableDiscoveryClient annotation to the *AttendeeServiceApplication.java* as shown below:
 
 +
 [source, java]
@@ -67,6 +67,20 @@ applications:
   services:
     - pdoshi-mysql-service
 -----
+
+. Update the application.yml with two properties: A unique application name - your service will be bound to Eureka using this name and disable basic authentication as we Spring security is enabled by default for Spring Cloud Services.
+
++
+[source, yml]
+-----
+security:
+  basic:
+    enabled: false
+spring:
+  application:
+    name: pdoshi-attendee-service
+-----
+
 
 . Run Maven *clean* and *package* - that should create attendee-service-0.0.1-SNAPSHOT.jar in the /target directory.
 
