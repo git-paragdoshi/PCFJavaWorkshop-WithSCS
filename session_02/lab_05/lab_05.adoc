@@ -348,6 +348,8 @@ OK
 :
 -----
 
+== Run Application
+
 . Access your application in the browser and now it should show the 'greeting' value from the config repo:
 
 +
