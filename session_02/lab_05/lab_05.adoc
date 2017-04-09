@@ -360,11 +360,11 @@ image::../../Common/images/config-env-endpoint.png[]
 
 . What just happened??  A Spring component within the Spring Cloud Starter Config Client module called a _service connector_ automatically detected that there was a Cloud Config service bound into the application.  The service connector configured the application automatically to connect to the cloud config server and download the configuration and wire it into the application
 
-. If you navigate to the GIT repo we specified for our configuration, https://github.com/git-paragdoshi/config-repo, you'll see a file named pdoshi-scsapp.yml.  This filename is the same as our spring.application.name value for our Boot application.  The configuration is read from this file, in our case the following property:
+. If you navigate to the GIT repo we specified for our configuration, https://github.com/git-paragdoshi/config-repo, you'll see a file named *scsapp.yml*.  This filename is the same as our spring.application.name value for our Boot application.  The configuration is read from this file, in our case the following property:
 +
 [source, yaml]
 ---------------------------------------------------------------------
-greeting: Hello from Git Repo!
+greeting: Hi from Git !
 ---------------------------------------------------------------------
 
 . Next we'll learn how to register our service with a service registry and load balance requests using Spring Cloud components.
