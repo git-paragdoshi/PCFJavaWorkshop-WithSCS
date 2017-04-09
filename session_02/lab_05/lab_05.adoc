@@ -351,103 +351,16 @@ OK
 . Access your application in the browser and now it should show the 'message' value from the config repo:
 
 +
-image::../../Common/images/config-repo-message-value.png[]
+image::../../Common/images/config-success-message.png[]
 
-== Run the _cloud-native-spring_ Application and verify dynamic config is working
-
-. Run the application
-+
-[source,bash]
----------------------------------------------------------------------
-$ mvn clean spring-boot:run
----------------------------------------------------------------------
-
-. Browse to http://localhost:8080 and verify you now see your new greeting.
-
-. Stop the _cloud-native-spring_ application
-
-== Create Spring Cloud Config Server instance
-
-. Now that our application is ready to read its config from a cloud config server, we need to deploy one!  This can be done through cloudfoundry using the services marketplace.  Browse to the marketplace in Pivotal Cloudfoundry Apps Manager, https://apps.cfpoc2.internal.t-mobile.com, navigate to the space you have been using to push your app, and select Config Server:
-+
-image::images/config-scs.jpg[]
-
-. In the resulting details page, select the _standard_, single tenant plan.  Name the instance *config-server*, select the space that you've been using to push all your applications.  At this time you don't need to select a application to bind to the service:
-+
-image::images/config-scs1.jpg[]
-
-. After we create the service instance you'll be redirected to your _Space_ landing page that lists your apps and services.  The config server is deployed on-demand and will take a few moments to deploy.  Once the messsage _The Service Instance is Initializing_ disappears click on the service you provisioned.  Select the manage link towards the top of the resulting screen to view the instance id and a JSON document with a single element, count, which validates that the instance provisioned correctly:
-+
-image::images/config-scs2.jpg[]
-
-. We now need to update the service instance with our GIT repository information.  Using the cloudfoundry CLI execute the following update service command:
-+
-[source,bash]
----------------------------------------------------------------------
-$ cf update-service config-server -c '{"git": { "uri": "https://github.com/azwickey-pivotal/config-repo" } }'
----------------------------------------------------------------------
-
-. Refresh you Config Server management page and you will see the following message.  Wait until the screen refreshes and the service is reintialized: config-server-reinitializing.
-+
-image::images/config-scs3.jpg[]
-
-. We will now bind our application to our config-server within our Cloudfoundry deployment manifest.  Add these 2 entries to the bottom of */cloud-native-spring/manifest.yml*
-+
-[source, yml]
----------------------------------------------------------------------
-  env:
-    TRUST_CERTS: api.cfpoc2.internal.t-mobile.com
-  services:
-  - config-server
----------------------------------------------------------------------
-+
-Complete:
-+
-[source, yml]
----------------------------------------------------------------------
----
-applications:
-- name: cloud-native-spring
-  host: cloud-native-spring
-  memory: 512M
-  instances: 1
-  path: ./target/cloud-native-spring-0.0.1-SNAPSHOT.jar
-  buildpack: java_buildpack_offline
-  timeout: 180
-  env:
-    TRUST_CERTS: https://api.cfpoc2.internal.t-mobile.com
-    JAVA_OPTS: -Djava.security.egd=file:///dev/urandom
-  services:
-  - config-server
----------------------------------------------------------------------
-
-== Deploy and test application
-
-. Build the application
-+
-[source,bash]
----------------------------------------------------------------------
-$ mvn clean package
----------------------------------------------------------------------
-
-. Push application into Cloud Foundry
-+
-[source,bash]
----------------------------------------------------------------------
-$ cf push -f manifest.yml
----------------------------------------------------------------------
-
-. Test your application by navigating to the root URL of the application, which will invoke the hello() service.  You should now see a greeting that is read from the cloud config server!
-+
-Bon Jour World!
 
 . What just happened??  A Spring component within the Spring Cloud Starter Config Client module called a _service connector_ automatically detected that there was a Cloud Config service bound into the application.  The service connector configured the application automatically to connect to the cloud config server and download the configuration and wire it into the application
 
-. If you navigate to the GIT repo we specified for our configuration, https://github.com/azwickey-pivotal/config-repo, you'll see a file named cloud-native-spring.yml.  This filename is the same as our spring.application.name value for our Boot application.  The configuration is read from this file, in our case the following property:
+. If you navigate to the GIT repo we specified for our configuration, https://github.com/git-paragdoshi/config-repo, you'll see a file named pdoshi-scsapp.yml.  This filename is the same as our spring.application.name value for our Boot application.  The configuration is read from this file, in our case the following property:
 +
 [source, yaml]
 ---------------------------------------------------------------------
-greeting: Bon Jour
+greeting: Hello from Git Repo!
 ---------------------------------------------------------------------
 
 . Next we'll learn how to register our service with a service registry and load balance requests using Spring Cloud components.
