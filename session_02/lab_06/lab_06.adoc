@@ -53,7 +53,7 @@ Complete listing of *AttendeeServiceApplication.java*:
 +
 image::../../Common/images/intellij-attendee-services-complete.png[]
 
-. Update the application.yml with two properties: A unique application name - your service will be bound to Eureka using this name and disable basic authentication as we Spring security is enabled by default for Spring Cloud Services.
+. Update the application.yml with three properties: A unique application name - your service will be bound to Eureka using this name, disable basic authentication as we Spring security is enabled by default for Spring Cloud Services and add the ability to auto generate ddl (tables) in our backend database.
 
 +
 [source, yml]
@@ -64,6 +64,8 @@ security:
 spring:
   application:
     name: pdoshi-attendee-service
+  jpa:
+    generate-ddl: true  
 -----
 
 
