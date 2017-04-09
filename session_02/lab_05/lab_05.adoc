@@ -348,11 +348,15 @@ OK
 :
 -----
 
-. Access your application in the browser and now it should show the 'message' value from the config repo:
+. Access your application in the browser and now it should show the 'greeting' value from the config repo:
 
 +
 image::../../Common/images/config-success-message.png[]
 
+. Another way to check the values coming from the config service is to use the /env endpoint that is provided by Spring Actuator. Hitting this end point for your application, will result in an output similar to this:
+
++
+image::../../Common/images/config-env-endpoint.png[]
 
 . What just happened??  A Spring component within the Spring Cloud Starter Config Client module called a _service connector_ automatically detected that there was a Cloud Config service bound into the application.  The service connector configured the application automatically to connect to the cloud config server and download the configuration and wire it into the application
 
