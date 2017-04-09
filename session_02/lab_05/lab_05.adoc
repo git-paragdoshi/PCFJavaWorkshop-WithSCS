@@ -282,7 +282,7 @@ image::../../Common/images/config-server-initialized.png[]
 +
 [source,bash]
 ---------------------------------------------------------------------
-$ cf update-service pdoshi-config-server -c '{"git": { "uri": "https://https://github.com/git-paragdoshi/config-repo" } }'
+$ cf update-service pdoshi-config-server -c '{"git": { "uri": "https://github.com/git-paragdoshi/config-repo" } }'
 ---------------------------------------------------------------------
 
 . The command will provide the following update:
@@ -334,8 +334,19 @@ image::../../Common/images/config-manifest-entry.png[]
 
 
 
-. Run the 'package' command for your application and 'cf push' the application from the command prompt.
+. Run the Maven 'package' command for your application and 'cf push' the application from the command prompt. Watch for the 'Binding service..' status in the cf push output. It will look something similar to this:
 
+-----
+:
+Binding service pdoshi-config-server to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+:
+-----
+
+. Access your application in the browser and now it should show the 'message' value from the config repo:
+
++
+image::../../Common/images/config-repo-message-value.png[]
 
 == Run the _cloud-native-spring_ Application and verify dynamic config is working
 
