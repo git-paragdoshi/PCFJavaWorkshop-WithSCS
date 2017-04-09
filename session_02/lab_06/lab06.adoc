@@ -113,7 +113,7 @@ public class ScsworkshopApplication {
 
 == Create the Circuit Breaker Dashboard
 
-.  When we modified our application to use a Hystrix Circuit Breaker our application automatically begins streaming out metrics about the health of our methods wrapped with a HystrixCommand.  We can stream these events through a AMQP message bus into Turbine to view on a Circuit Breaker dashboard.  This can be done through cloudfoundry using the services marketplace by executing the following command:
+.  When we modified our application to use a Hystrix Circuit Breaker our application automatically begins streaming out metrics about the health of our methods wrapped with a HystrixCommand.  We can stream these events through a AMQP message bus into Turbine to view on a Circuit Breaker dashboard.  This can be done through cloudfoundry using the services marketplace by executing the following command - ensure that you choose a unique prefix for the service name:
 +
 [source,bash]
 ---------------------------------------------------------------------
@@ -121,53 +121,45 @@ $ cf create-service p-circuit-breaker-dashboard standard pdoshi-circuit-breaker-
 ---------------------------------------------------------------------
 
 . If we view the Services (accessible from the Apps Manager) you will see that the service is getting initialized:
+
 +
-image::images/circuit-breaker-instance-creation.jpg[]
+image::../../Common/images/circuit-breaker-instance-creation.png[]
+
 
 . After the service is created, if we view the Circuit Breaker Dashboard (accessible from the _manage_ link in Apps Manager) you will see that a dashboard has been deployed but is empty (You may get an _initializing_ message for a few seconds.  This should eventually refresh to a dashboard):
 +
-image::images/circuit-breaker-instance-creation.jpg[]
+image::../../Common/images/circuit-breaker-instance-dashboard.png[]
 
-. We will now bind our application to our circuit-breaker-dashboard within our Cloudfoundry deployment manifest.  Add these additional reference to a the service to the bottom of */cloud-native-spring-ui/manifest.yml* in the services list:
+. We will now bind our application to our circuit-breaker-dashboard within our Cloudfoundry deployment manifest.  Add the additional reference of circuit breaker dashboard to the services to the bottom of *manifest.yml* in the services list:
 +
 [source, yml]
 ---------------------------------------------------------------------
   services:
-  - service-registry
-  - circuit-breaker-dashboard
+  - pdoshi-config-server
+  - pdoshi-service-registry
+  - pdoshi-circuit-breaker-dashboard
 ---------------------------------------------------------------------
 
 == Deploy and test application
 
-. Build the application
+. Build the application using Maven *clean* and *package* targets. Push the application into Cloud Foundry using *cf push*
+
+
+. Test your application by navigating to the root URL of the application.  If the dependent attendee-service REST service is still stopped, you should simply see an empty Attendee table.  Remember that last time you received a nasty exception in the browser?  Now your Circuit Breaker fallback method is automatically called and the fallback behavior is executed.
++
+image::../../Common/images/circuit-breaker-fallback.png[]
+
+. From a commandline start the attendee-service microservice
 +
 [source,bash]
 ---------------------------------------------------------------------
-$ mvn clean package -DskipTests
+$ cf start pdoshi-attendee-service
 ---------------------------------------------------------------------
 
-. Push application into Cloud Foundry
+. Refresh the UI app and you should once again see the list of Attendees returned back from the service.
 +
-[source,bash]
----------------------------------------------------------------------
-$ cf push -f manifest.yml
----------------------------------------------------------------------
-
-. Test your application by navigating to the root URL of the application.  If the dependent cities REST service is still stopped, you should simply see a blank table.  Remember that last time you received a nasty exception in the browser?  Now your Circuit Breaker fallback method is automatically called and the fallback behavior is executed.
-+
-image::images/empty.jpg[]
-
-. From a commandline start the cloud-native-spring microservice (the original city service, not the new UI)
-+
-[source,bash]
----------------------------------------------------------------------
-$ cf start cloud-native-spring
----------------------------------------------------------------------
-
-. Refresh the UI app and you should once again see a table listing the first page of cities.
-+
-image::../lab05/images/ui.jpg[]
+image::../../Common/images/circuit-breaker-results.png[]
 
 . Refresh your UI application a few times to force some traffic though the circuit breaker call path.  After doing this you should now see the dashboard populated with metrics about the health of your Hystrix circuit breaker:
 +
-image::images/dash1.jpg[]
+image::../../Common/images/circuit-breaker-metrics.png[]
