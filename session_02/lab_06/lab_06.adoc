@@ -465,22 +465,18 @@ applications:
 
 == Deploy and test application
 
-. Build the application.  We have to skip the tests otherwise we may fail because of having 2 spring boot apps on the classpath
+. Run the Maven *clean* and *package* tasks for the SCSApp application.  Do a *cf push* for the app from the command line. You should see 'Binding..' message for the service registry.
 +
 [source,bash]
 ---------------------------------------------------------------------
-$ mvn clean package -DskipTests
+OK
+Binding service pdoshi-service-registry to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+Binding service pdoshi-config-server to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
 ---------------------------------------------------------------------
 
-
-. Push application into Cloud Foundry
-+
-[source,bash]
----------------------------------------------------------------------
-$ cf push 
----------------------------------------------------------------------
-
-. Test your application by navigating to the root URL of the application, which will invoke Vaadin UI.  You should now see a table listing the first set of rows returned from the cities microservice:
+. Test your application by navigating to the /services URL of the application, which will invoke the UI. In my example, the URL will be https://pdoshi-scsapp.cfapps.io/services. You should now see a section to add Attendees and the list of Attendee getting refreshed everytime we add an attendee:
 +
 image::images/ui.jpg[]
 
