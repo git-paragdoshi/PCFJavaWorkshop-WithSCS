@@ -53,6 +53,20 @@ Complete listing of *AttendeeServiceApplication.java*:
 +
 image::../../Common/images/intellij-attendee-services-complete.png[]
 
+. Update the application.yml with two properties: A unique application name - your service will be bound to Eureka using this name and disable basic authentication as we Spring security is enabled by default for Spring Cloud Services.
+
++
+[source, yml]
+-----
+security:
+  basic:
+    enabled: false
+spring:
+  application:
+    name: pdoshi-attendee-service
+-----
+
+
 . Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance that we will create shortly. Complete listing is shown below:
 +
 [source, yml]
@@ -67,20 +81,6 @@ applications:
   services:
     - pdoshi-mysql-service
 -----
-
-. Update the application.yml with two properties: A unique application name - your service will be bound to Eureka using this name and disable basic authentication as we Spring security is enabled by default for Spring Cloud Services.
-
-+
-[source, yml]
------
-security:
-  basic:
-    enabled: false
-spring:
-  application:
-    name: pdoshi-attendee-service
------
-
 
 . Run Maven *clean* and *package* - that should create attendee-service-0.0.1-SNAPSHOT.jar in the /target directory.
 
