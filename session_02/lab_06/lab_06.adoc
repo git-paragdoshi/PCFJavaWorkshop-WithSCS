@@ -1,6 +1,10 @@
 = Adding Service Registration and Discover with Spring Cloud
 
-In this lab we'll utilize Spring Boot and Spring Cloud to configure our application register itself with a service registry.  To do this we'll also need to provision an instance of a Eureka service registry using Pivotal Cloudfoundry Spring Cloud Services.  We'll also add a simple client application that looks up our application from the service registry and makes requests to our Cities service.
+In this lab we'll utilize Spring Boot and Spring Cloud to configure our application register itself with a service registry.  To do this we'll also need to provision an instance of a Eureka service registry using Pivotal Cloudfoundry Spring Cloud Services.  We'll also extend our application to look up a microservice application (Attendee-Service) from the service registry and makes requests to it.
+
+== Update Attendee-Service to Register with Eureka
+
+. 
 
 == Update _Cloud-Native-Spring_ Boot Application to Register with Eureka
 
