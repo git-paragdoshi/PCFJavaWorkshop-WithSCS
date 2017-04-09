@@ -4,7 +4,119 @@ In this lab we'll utilize Spring Boot and Spring Cloud to configure our applicat
 
 == Update Attendee-Service to Register with Eureka
 
-. 
+. Navigate to */starter-project/spring-cloud-eureka* folder and unzip the *AttendeeServicesApp* zip file. This contains the code needed for the AttendeeService microservice that is backed by a MySQL database.
+
+. In Intellij, click on File -- Open and select 'AttendeeServicesApp' folder. It will open AttendeeServicesApp project:
++
+image::../../Common/images/intellij-attendee-services-app.png[]
+
+. Open *pom.xml* and add the Spring Cloud Eureka Dependencies:
++
+[source, xml]
+-----
+		<dependency>
+	            <groupId>io.pivotal.spring.cloud</groupId>
+	            <artifactId>spring-cloud-services-dependencies</artifactId>
+	            <version>1.4.1.RELEASE</version>
+	            <type>pom</type>
+	        </dependency>
+	        <dependency>
+	            <groupId>org.springframework.cloud</groupId>
+	            <artifactId>spring-cloud-dependencies</artifactId>
+	            <version>Brixton.SR7</version>
+	            <type>pom</type>
+	        </dependency>
+	        <dependency>
+			    <groupId>org.springframework.cloud</groupId>
+			    <artifactId>spring-cloud-commons</artifactId>
+			    <version>1.1.8.RELEASE</version>
+		</dependency>
+		<dependency>
+		      <groupId>io.pivotal.spring.cloud</groupId>
+		      <artifactId>spring-cloud-services-starter-service-registry</artifactId>
+		      <version>1.4.1.RELEASE</version>
+    		</dependency>
+
+-----
+
+. Open the *AttendeeServiceApplication.java* and add the @EnableDiscoveryClient annotation at top of the class as shown below:
+
++
+[source, java]
+------
+SpringBootApplication
+@EnableJpaRepositories
+@EnableDiscoveryClient
+public class AttendeeServiceApplication {
+------
++
+Complete listing of *AttendeeServiceApplication.java*:
+image::../../Common/images/intellij-attendee-services-complete.png[]
+
+. Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance that we will create shortly. Complete listing is shown below:
++
+[source, yml]
+-----
+applications:
+- name: pdoshi-attendee-service
+  instances: 1
+  memory: 1024M
+  disk_quota: 1024M
+  stack: cflinuxfs2
+  path: target/attendee-service-0.0.1-SNAPSHOT.jar
+  services:
+    - pdoshi-mysql-service
+-----
+
+. Run Maven *clean* and *package* - that should create attendee-service-0.0.1-SNAPSHOT.jar in the /target directory.
+
++
+image::../../Common/images/intellij-attendee-services-packaged.png[]
+
+. Navigate to Cloud Foundry App Manager and choose 'Marketplace' link to see list of available services. Choose 'MySQL for Pivotal Cloud Foundry'.
+
++
+image::../../Common/images/app-manager-mysql-service.png[]
+
+. Select the _100mb_ free plan and click on 'Select this plan' button. Give it the same instance name that you have listed in the *manifest.yml* file. In my example, it is pdoshi-mysql-service. Add it to the 'workshop' space. And do not bind any application at this time.
+
++
+image::../../Common/images/app-manager-mysql-service-added.png[]
+
+. Go to the command prompt and issue a *cf services* command and you should see your newly created MySQL service created and available.
++
+[source, bash]
+-----
+pdoshi@Parags-MacBook-Pro:~/demos/AttendeeServicesApp$ cf services
+Getting services in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+
+name                   service           plan       bound apps                last operation
+autoscale              app-autoscaler    standard   ddieruf-articulate        create succeeded
+pdoshi-config-server   p-config-server   standard   pdoshi-scsapp             update succeeded
+pdoshi-mysql-service   p-mysql           100mb      pdoshi-attendee-service   create succeeded
+-----
+
+. Navigate to your AttendeeServiceApp folder and do a *cf push*. You should see the 'Binding...' service message. 
++
+[source, bash]
+-----
+pdoshi@Parags-MacBook-Pro:~/demos/AttendeeServicesApp$ cf push
+Using manifest file /Users/pdoshi/demos/AttendeeServicesApp/manifest.yml
+
+Using stack cflinuxfs2...
+OK
+Creating app pdoshi-attendee-service in org PapaJohns / space workshop as pdoshi@pivotal.io...
+OK
+
+Using route pdoshi-attendee-service.cfapps.io
+Binding pdoshi-attendee-service.cfapps.io to pdoshi-attendee-service...
+OK
+-----
+
+. Ensure that your application has successfully started. 
+
+ 
 
 == Update _Cloud-Native-Spring_ Boot Application to Register with Eureka
 
