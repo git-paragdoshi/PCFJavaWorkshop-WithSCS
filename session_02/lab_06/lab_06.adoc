@@ -482,6 +482,10 @@ OK
 +
 image::../../Common/images/services-endpoint-page.png[]
 
+After couple of attendees are created:
++
+image::../../Common/images/services-endpoint-page-with-data.png[]
+
 . From a commandline stop the attendee-service microservice
 +
 [source,bash]
