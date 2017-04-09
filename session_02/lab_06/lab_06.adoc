@@ -136,9 +136,32 @@ OK
 
 -----
 
-. Ensure that your application has successfully started. 
+. Ensure that your application has successfully started. Open a browser window and visit your application URL. In my example, it is pdoshi-attendee-service.cfapps.io. You need to have JSON formatter enabled as the app will show the /attendees endpoint information.
 
- 
++
+image::../../Common/images/attendee-service-browser-endpoint.png[] 
+
+. Now navigate to App Manager Services tab and you will see one app bound to your Eureka Service Registry and MySQL service.  
+
++
+image::../../Common/images/appmanager-services-view.png[] 
+
+. Click on your Service Registry service instance and it will show the attendee-service bound to the registry. 
+
++
+image::../../Common/images/appmanager-service-registry-bound.png[]
+
+. Click on the 'Manage' link and it will open the Eureka Service Registry dashboard. You can see details of the service instance that is bound to the service registry.
+
++
+image::../../Common/images/appmanager-service-registry-dashboard.png[]
+
+
+== Lookup Attendee Service and Invoke its Services
+
+. Now that we have successfully bound our Attendee micro service to the Service Registry, let's modify our SCSApp to lookup the service and invoke methods on it.
+
+. 
 
 == Update _Cloud-Native-Spring_ Boot Application to Register with Eureka
 
