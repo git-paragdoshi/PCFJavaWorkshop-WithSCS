@@ -158,7 +158,7 @@ image::../../Common/images/appmanager-service-registry-dashboard.png[]
 
 
 == Lookup Attendee Service and Invoke its Services
-+
+
 Now that we have successfully bound our Attendee micro service to the Service Registry, let's modify our SCSApp to lookup the service and invoke methods on it.
 
 . Open the SCSApp's pom.xml and as before, we need to add _spring-cloud-services-starter-service-registry_ to the classpath
@@ -176,7 +176,8 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 
 . Since this UI is going to consume REST services its an awesome opportunity to use Feign.  Feign will handle *ALL* the work of invoking our services and marshalling/unmarshalling JSON into domain objects. As we will be working with JPA components, we will need to the Spring Data Rest dependency along with Feign Client dependencies in pom.xml.
 
-+ [source, xml]
++ 
+[source, xml]
 -----
 <dependency>
 <groupId>org.springframework.boot</groupId>
@@ -190,9 +191,9 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 </dependency>
 -----
 
-. Take note of how Feign references the downstream service; its only the name of the service it will lookup from Eureka service registry.  Add the following interface declaration to the _ScsworkshopApplication.java_:
+. Take note of how Feign references the downstream service; its only the name of the service it will lookup from Eureka service registry - *the name of the service should be the same name that you have previously bound your microservice in Service Registry*.  Add the following interface declaration to the *ScsworkshopApplication.java*:
 +
-[source,java,numbered]
+[source,java]
 ---------------------------------------------------------------------
   2. @FeignClient("https://pdoshi-attendee-service")
 3. 	protected interface AttendeeClient {
@@ -207,7 +208,7 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 +
 We'll also need to add a few annotations to our boot application:
 +
-[source,java,numbered]
+[source,java]
 ---------------------------------------------------------------------
 @SpringBootApplication
 @EnableFeignClients
@@ -217,7 +218,7 @@ public class ScsworkshopApplication {
 +
 Completed *ScsworkshopApplication.java* class:
 +
-[source,java,numbered]
+[source,java]
 ---------------------------------------------------------------------
 package com.example;
 
@@ -329,9 +330,9 @@ Add the following two methods to *ServiceController.java*:
 +
 Completed *ServicesController.java* class:
 +
-[source, java, numbered]
+[source, java]
 -----
-ackage com.example;
+package com.example;
 
 
 import javax.servlet.http.HttpServletRequest;
