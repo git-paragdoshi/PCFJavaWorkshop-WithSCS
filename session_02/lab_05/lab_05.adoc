@@ -319,6 +319,11 @@ Updated: 2017-04-09T00:27:57Z
 +
 image::../../Common/images/config-server-reinitializing.png[]
 
+. After the service completes the the re-initialzing, you should see the the git uri updated on the config page:
+
++
+image::../../Common/images/config-git-uri-updated.png[]
+
 . We will now bind our application to our config-server within our Cloudfoundry deployment manifest.  Add these 2 entries to the bottom of *manifest.yml*
 +
 [source, yml]
