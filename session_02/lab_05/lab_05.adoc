@@ -419,4 +419,6 @@ image::../../Common/images/config-refresh-with-postman.png[]
 +
 image::../../Common/images/config-success-with-refresh.png[]
 
-. Congrats! You have successfully refreshed your git repo values dynamically! Next we'll learn how to register our service with a service registry and load balance requests using Spring Cloud components.
+. Congrats! You have successfully refreshed your git repo values dynamically! Complete source code for this lab can be found in the SCSApp-complete.zip file in /complete-project/spring-config folder.
+
+. Next we'll learn how to register our service with a service registry and load balance requests using Spring Cloud components.
