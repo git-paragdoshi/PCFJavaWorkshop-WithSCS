@@ -49,8 +49,8 @@ SpringBootApplication
 @EnableDiscoveryClient
 public class AttendeeServiceApplication {
 ------
-+
 Complete listing of *AttendeeServiceApplication.java*:
++
 image::../../Common/images/intellij-attendee-services-complete.png[]
 
 . Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance that we will create shortly. Complete listing is shown below:
