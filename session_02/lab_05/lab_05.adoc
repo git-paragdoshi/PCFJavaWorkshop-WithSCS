@@ -402,6 +402,7 @@ image::../../Common/images/config-app-value-after-restart.png[]
 image::../../Common/images/config-app-value-refreshed-again.png[]
 
 . Go to the command prompt and run curl command (Download cURL if not already installed on your machine: https://curl.haxx.se/download.html) or you can run this command in PostMan (Download link: https://www.getpostman.com) too. Output is shown for both methods:
++
 cURL:
 +
 [source, bash]
@@ -409,7 +410,7 @@ cURL:
 pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$ curl -X POST http://pdoshi-scsapp.cfapps.io/refresh 
 ["config.client.version","greeting"]pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$
 -----
-
++
 Postman (notice the Status: 200 OK):
 +
 image::../../Common/images/config-refresh-with-postman.png[]
