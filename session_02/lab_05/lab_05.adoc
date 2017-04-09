@@ -244,13 +244,96 @@ security.basic.enabled=false
 spring.application.name=pdoshi-scsapp
 ---------------------------------------------------------------------
 
+. To simplify working with the endpoint for this lab, we will turn off additional security for the health endpoint. Add the following to *application.properties*:
+
+------
+management.security.enabled=false
+------
+
 . Complete application.properties
 +
 ---------------------------------------------------------------------
 greeting="Hello"
 security.basic.enabled=false
 spring.application.name=pdoshi-scsapp
+management.security.enabled=false
 ---------------------------------------------------------------------
+
+. Next step is to create the Spring Config Server service instance and bind it to our application. To create the config server instance, navigate to Marketplace in your App Manager and click on 'Config Server' service:
++
+image::../../Common/images/config-server-marketplace.png[]
+
+. In the resulting details page, select the _standard_, single tenant plan.  give it a unique name, select the 'workspace' space that you've been using to push all your applications.  At this time you don't need to select a application to bind to the service:
++
+image::../../Common/images/create-config-server-instance.png[]
+
+. After we create the service instance you'll be redirected to your _Space_ landing page that lists your apps and services.  The config server is deployed on-demand and will take a few moments to deploy.  
+
++
+image::../../Common/images/config-server-initializing.png[]
+
+
+. Once the messsage _The Service Instance is Initializing_ disappears click on the service you provisioned.  Select the manage link towards the top of the resulting screen to view the instance id and a JSON document with a single element, count, which validates that the instance provisioned correctly:
+
++
+image::../../Common/images/config-server-initialized.png[]
+
+. We now need to update the service instance with our GIT repository information.  Using the cloudfoundry CLI execute the following update service command:
++
+[source,bash]
+---------------------------------------------------------------------
+$ cf update-service pdoshi-config-server -c '{"git": { "uri": "https://https://github.com/git-paragdoshi/config-repo" } }'
+---------------------------------------------------------------------
+
+. The command will provide the following update:
+
++
+[source,bash]
+---------------------------------------------------------------------
+Updating service instance pdoshi-config-server as pdoshi@pivotal.io...
+OK
+
+Update in progress. Use 'cf services' or 'cf service pdoshi-config-server' to check operation status.
+pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$ cf service pdoshi-config-server 
+
+Service instance: pdoshi-config-server
+Service: p-config-server
+Bound apps: 
+Tags: 
+Plan: standard
+Description: Config Server for Spring Cloud Applications
+Documentation url: http://docs.pivotal.io/spring-cloud-services/
+Dashboard: https://spring-cloud-service-broker.cfapps.io/dashboard/p-config-server/1658b211-4063-4883-8109-138640e0b7d5
+
+Last Operation
+Status: update in progress
+Message: 
+Started: 2017-04-09T00:27:45Z
+Updated: 2017-04-09T00:27:57Z
+
+---------------------------------------------------------------------
+
+
+. Refresh you Config Server management page and you will see the following message.  Wait until the screen refreshes and the service is reintialized:
+
++
+image::../../Common/images/config-server-reinitializing.png[]
+
+. We will now bind our application to our config-server within our Cloudfoundry deployment manifest.  Add these 2 entries to the bottom of *manifest.yml*
++
+[source, yml]
+---------------------------------------------------------------------
+ services:
+  - pdoshi-config-server
+---------------------------------------------------------------------
+
+Complete file will look like this:
+
++
+image::../../Common/images/config-manifest-entry.png[]
+
+. Run the 'package' command for your application and 'cf push' the application from the command prompt.
+
 
 == Run the _cloud-native-spring_ Application and verify dynamic config is working
 
@@ -286,7 +369,7 @@ image::images/config-scs2.jpg[]
 $ cf update-service config-server -c '{"git": { "uri": "https://github.com/azwickey-pivotal/config-repo" } }'
 ---------------------------------------------------------------------
 
-. Refresh you Config Server management page and you will see the following message.  Wait until the screen refreshes and the service is reintialized:
+. Refresh you Config Server management page and you will see the following message.  Wait until the screen refreshes and the service is reintialized: config-server-reinitializing.
 +
 image::images/config-scs3.jpg[]
 
