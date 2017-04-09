@@ -478,15 +478,15 @@ OK
 
 . Test your application by navigating to the /services URL of the application, which will invoke the UI. In my example, the URL will be https://pdoshi-scsapp.cfapps.io/services. You should now see a section to add Attendees and the list of Attendee getting refreshed everytime we add an attendee:
 +
-image::images/ui.jpg[]
+image::../../Common/images/services-endpoint-page.png[]
 
-. From a commandline stop the cloud-native-spring microservice (the original city service, not the new UI)
+. From a commandline stop the attendee-service microservice
 +
 [source,bash]
 ---------------------------------------------------------------------
-$ cf stop cloud-native-spring
+$ cf stop pdoshi-attendee-service
 ---------------------------------------------------------------------
-. Refresh the UI app.  What happens?  Now you get a nasty error that is not very user friendly!
+. Refresh the browser.  What happens?  Now you get a nasty error that is not very user friendly!
 
 . Next we'll learn how to make our UI Application more resilient in the case that our downstream services are unavailable.
 
