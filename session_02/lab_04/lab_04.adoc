@@ -4,7 +4,7 @@ In this lab we'll utilize Spring Boot and Spring Cloud to configure our applicat
 
 == Import Starter Project in Intellij
 
-in your git clone directory, there will be a sub-directory named 'starter-project'. In that directory, there will be a zip archive file named 'SCSApp.zip'. Un-zip that file into any directory. After un-zipping that file, import it as a Maven project in Intellij by following these steps:
+in your git clone directory, there will be a sub-directory named 'starter-project/spring-config'. In that directory, there will be a zip archive file named 'SCSApp.zip'. Un-zip that file into any directory. After un-zipping that file, import it as a Maven project in Intellij by following these steps:
 
 . Start Intellij and use the 'Import Project option':
 
@@ -47,7 +47,7 @@ image::../../Common/images/intellij-project-name.png[]
 image::../../Common/images/intellij-project-imported.png[]
 
 
-. Navigate to 'View - Tool Windows - Maven Projects' and run the 'package' command. This should generate the scsapp-0.0.1-SNAPSHOT.jar' in the 'target' folder:
+. Navigate to 'View - Tool Windows - Maven Projects' and run the *clean* and *package* command. This should generate the scsapp-0.0.1-SNAPSHOT.jar' in the *target* folder:
 +
 image::../../Common/images/intellij-jar-generation.png[]
 
@@ -140,7 +140,7 @@ image::../../Common/images/scsapp-index-page.png[]
 
 Now we will set the groundwork of reading dynamic value in our application. Make the following changes:
 
-. In the ServiceController.java, add the following snippet of code above the index() REST service method which will create a variable _greeting and store a default value of "Hi":
+. In  */main/src/java/com.example.ServiceController.java*, add the following snippet of code above the index() REST service method which will create a variable _greeting and store a default value of "Hi". Make sure to import *org.springframework.beans.factory.annotation.Value*.
 
 +
 -----
@@ -148,14 +148,14 @@ Now we will set the groundwork of reading dynamic value in our application. Make
 	private String _greeting;
 -----
 
-. In the ServiceController.java, update the index() REST service method to store the value of _greeting in the model object:
+. In */main/src/java/com.example.ServiceController.java*, update the index() REST service method to store the value of _greeting in the model object:
 
 +
 -----
 model.addAttribute("greeting", _greeting);
 -----
 
-The complete ServiceController.java will look like this:
+The complete */main/src/java/com.example.ServiceController.java* will look like this:
 
 -----
 package com.example;
@@ -200,7 +200,7 @@ greeting="Hello"
 </div>
 -----
 +
-Complete index.html file:
+Complete */src/main/resources/template/index.html* file:
 
 -----
 <!DOCTYPE HTML>
@@ -231,7 +231,7 @@ Complete index.html file:
 
 -----
 
-. Run the 'package' task of Maven, go to the command prompt and 'cf push' the application. Refreshing the browser should show the dynamic value of greeting:
+. Run the *clean* and *package* task of Maven, go to the command prompt and *cf push* the application. Refreshing the browser should show the dynamic value of greeting:
 +
 image::../../Common/images/scsapp-greeting-value.png[]
 
@@ -239,7 +239,7 @@ image::../../Common/images/scsapp-greeting-value.png[]
 == Add Spring Config functionality
 Now we will add the functionality to read the 'greeting' value from a git repo that is backed by Spring Cloud Config service. Make the following changes to the application:
 
-. Open your Maven POM file and add the following dependencies to enable SCS and actuator end-point so we can see the environment values returned for the config service:
+. Open your Maven POM file (*pom.xml*) and add the following dependencies to enable SCS and actuator end-point so we can see the environment values returned for the config service:
 
 +
 [source, xml]
@@ -273,32 +273,32 @@ Now we will add the functionality to read the 'greeting' value from a git repo t
 
 -----
 
-. When we introduced the Spring Cloud Services Starter Config Client dependency Spring Security will also be included (Config servers will be protected by OAuth2).  However, this will also enable basic authentication to all our service endpoints.  Add the following configuration to *application.properties*:
+. When we introduced the Spring Cloud Services Starter Config Client dependency Spring Security will also be included (Config servers will be protected by OAuth2).  However, this will also enable basic authentication to all our service endpoints.  Add the following configuration to */main/resources/application.properties*:
 
 +
 ---------------------------------------------------------------------
 security.basic.enabled=false
 ---------------------------------------------------------------------
 
-. We'll also want to give our Spring Boot App a name so that it can lookup application-specific configuration from the config server later.  Add the following configuration to *application.properties*:
+. We'll also want to give our Spring Boot App a name so that it can lookup application-specific configuration from the config server later.  Add the following configuration to */main/resources/application.properties*:
 
 +
 ---------------------------------------------------------------------
-spring.application.name=pdoshi-scsapp
+spring.application.name=scsapp
 ---------------------------------------------------------------------
 
-. To simplify working with the endpoint for this lab, we will turn off additional security for the health endpoint. Add the following to *application.properties*:
+. To simplify working with the endpoint for this lab, we will turn off additional security for the health endpoint. Add the following to */main/resources/application.properties*:
 
 ------
 management.security.enabled=false
 ------
 
-. Complete application.properties
+. Complete */main/resources/application.properties*:
 +
 ---------------------------------------------------------------------
 greeting="Hello"
 security.basic.enabled=false
-spring.application.name=pdoshi-scsapp
+spring.application.name=scsapp
 management.security.enabled=false
 ---------------------------------------------------------------------
 
