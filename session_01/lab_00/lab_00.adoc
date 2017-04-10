@@ -10,7 +10,7 @@
 > cf api https://api.run.pivotal.io
 ----
 
-. Login to Pivotal Cloud Foundry:
+. Log In to Pivotal Cloud Foundry:
 +
 ----
 > cf login
@@ -43,7 +43,7 @@ Space:          workshop
 ----
 ====
 
-== AppsManager Login
+== AppsManager Log In
 
 . Log In to Apps Manager URL: http://run.pivotal.io. Click on the 'LOG IN'link in the upper right corner. Use the same username and password you entered when using the CF CLI
 +
