@@ -61,7 +61,7 @@ $ git fetch --all
 #### Session 2 [(Slides)](session_02/Session_02.pdf): _Cloud Native Design and Microservices with Spring Cloud Services_
   - [Lab 4 - Dynamic Configuration Loading with Spring Cloud Services - Config Server](session_02/lab_04/lab_04.adoc)
   - [Lab 5 - MicroServices Registration and Discovery with Spring Cloud Services - Eureka](session_02/lab_05/lab_05.adoc)
-  - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab_06.adoc)
+  - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab06.adoc)
   - [Lab Review - Spring Cloud Services](session_02/Labs_Review_01.pdf)
 
 #### Session 3 [(Slides)](session_03/Session_03.pdf): _Continuous Integration/Continuous Delivery with PCF_
