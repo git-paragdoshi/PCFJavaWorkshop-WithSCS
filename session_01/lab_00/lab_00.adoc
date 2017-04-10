@@ -1,6 +1,6 @@
 = Lab 0 - Accessing the Workshop Environment
 
-== CF CLI Target and Login
+== CF CLI Target and Log In
 
 . Download the latest release of the Cloud Foundry CLI from https://console.run.pivotal.io/tools for your operating system and install it.
 
@@ -49,7 +49,7 @@ Space:          workshop
 +
 image::../../Common/images/lab-student-login.png[]  
 
-. Post Login Screen:
+. Post Log In Screen:
 
 +
 image::../../Common/images/lab-student-loggedin.png[]
