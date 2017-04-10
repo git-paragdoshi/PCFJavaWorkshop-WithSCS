@@ -417,6 +417,7 @@ greeting: Hi from Git !
 == Dynamically refreshing Git repo values in application
 
 . Let's update the value of greeting in the git repo and check if that is dynamically updated in our application. As can be seen below, I have updated the git repo value of greeting to 'Hi Refreshed!':
+
 +
 image::../../Common/images/config-git-refreshed.png[]
 
@@ -426,7 +427,7 @@ image::../../Common/images/config-app-not-refreshed.png[]
 
 . As can be seen the value was not updated. Why not?? Because the Config value were retrieved at startup and stored in the Spring bean. There was no way for Spring to know that the value have been refreshed in the remote Git repo. 
 
-To refresh the values without starting up the app, we need to utilize a Spring Actuator endpoint named /refresh and also add an annotation to our Controller class so that the value can be refreshed dynamically. 
+ To refresh the values without starting up the app, we need to utilize a Spring Actuator endpoint named /refresh and also add an annotation to our Controller class so that the value can be refreshed dynamically. 
 
 . Add @RefreshScope annotation to the ServiceController.java:
 
