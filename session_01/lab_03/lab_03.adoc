@@ -47,7 +47,7 @@ Connected, dumping recent logs for app paragdoshi-articulate in org PapaJohns / 
 ====
 
 As you can see, Cloud Foundry's log aggregation components capture both application logs and CF component logs relevant to your application.
-These events are properly interleaved based on time, giving you an accurate picture of events as they transpired across the system.  In this case we output Kaboom when the kill button is pressed in the .NET app
+These events are properly interwoven based on time, giving you an accurate picture of events as they transpired across the system. 
 
 . To get a running ``tail'' of the application logs rather than a dump, simply type:
 +
