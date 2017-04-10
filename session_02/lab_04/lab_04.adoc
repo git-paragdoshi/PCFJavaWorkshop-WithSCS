@@ -142,6 +142,7 @@ Now we will set the groundwork of reading dynamic value in our application. Make
 
 . In  */main/src/java/com.example.ServiceController.java*, add the following snippet of code above the index() REST service method which will create a variable _greeting and store a default value of "Hi". Make sure to import *org.springframework.beans.factory.annotation.Value*.
 
++
 [source, java]
 -----
 @Value("${greeting:Hi}")
@@ -150,12 +151,15 @@ Now we will set the groundwork of reading dynamic value in our application. Make
 
 . In */main/src/java/com.example.ServiceController.java*, update the index() REST service method to store the value of _greeting in the model object:
 
++
 [source, java]
 -----
 model.addAttribute("greeting", _greeting);
 -----
 
 . The complete */main/src/java/com.example.ServiceController.java* will look like this:
++
+[source, java]
 -----
 package com.example;
 
@@ -184,12 +188,15 @@ public class ServicesController {
 
 . Override the default value of "Hi" in the applications.properties by adding this line:
 
++
+[source, properties]
 -----
 greeting="Hello"
 -----
 
 . Modify the */src/main/resources/template/index.html* file with the following snippet:
 
++
 [source, html]
 -----
 <div class="row">
@@ -198,9 +205,11 @@ greeting="Hello"
 	</div>
 </div>
 -----
-+
-Complete */src/main/resources/template/index.html* file:
 
+ Complete */src/main/resources/template/index.html* file:
+
++
+[source, html]
 -----
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
