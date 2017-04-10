@@ -154,8 +154,8 @@ Now we will set the groundwork of reading dynamic value in our application. Make
 -----
 model.addAttribute("greeting", _greeting);
 -----
-+
-The complete */main/src/java/com.example.ServiceController.java* will look like this:
+
+. The complete */main/src/java/com.example.ServiceController.java* will look like this:
 
 -----
 package com.example;
