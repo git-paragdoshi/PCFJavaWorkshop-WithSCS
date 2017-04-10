@@ -171,6 +171,7 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 <dependency>
 	<groupId>io.pivotal.spring.cloud</groupId>
 	<artifactId>spring-cloud-services-starter-service-registry</artifactId>
+	<version>1.4.1.RELEASE</version>
 </dependency>
 
 ---------------------------------------------------------------------
@@ -433,7 +434,7 @@ public class ServicesController {
 -----
 
 
-. Finally, we will update the manifest.yml to bind to the same Service Registry instance as our Attendee Service microservice. *At this time you can remove the *config-server* service binding, as it is not needed.
+. Finally, we will update the manifest.yml to bind to the same Service Registry instance as our Attendee Service microservice. At this time you can remove the *config-server* service binding, as it is not needed in this lab.
 +
 [source, yml]
 -----
