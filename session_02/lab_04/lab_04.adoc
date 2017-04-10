@@ -141,6 +141,7 @@ image::../../Common/images/scsapp-index-page.png[]
 Now we will set the groundwork of reading dynamic value in our application. Make the following changes:
 
 . In the ServiceController.java, add the following snippet of code above the index() REST service method which will create a variable _greeting and store a default value of "Hi":
+
 +
 -----
 @Value("${greeting:Hi}")
@@ -186,6 +187,48 @@ public class ServicesController {
 
 -----
 greeting="Hello"
+-----
+
+. Modify the */src/main/resources/template/index.html* file with the following snippet:
+
+[source, html]
+-----
+<div class="row">
+	<div class="col-md-6">
+		Value returned for greeting is: <span th:text="${greeting}"> </span>
+	</div>
+</div>
+-----
++
+Complete index.html file:
+
+-----
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div class="container" role="main">
+
+		<div class="page-header">
+			<p>&nbsp;</p>
+				<h1>Welcome to Spring Cloud Services Lab!</h1>
+		</div>
+
+		<div class="row ">
+			<div class="col-md-6">
+				<p>The purpose of this application is to show Spring Cloud Services features.</p>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">
+				Value returned for greeting is: <span th:text="${greeting}"> </span>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
 -----
 
 . Run the 'package' task of Maven, go to the command prompt and 'cf push' the application. Refreshing the browser should show the dynamic value of greeting:
