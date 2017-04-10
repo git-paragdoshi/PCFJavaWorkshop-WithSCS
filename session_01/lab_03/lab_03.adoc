@@ -183,7 +183,7 @@ OK
 +
 ----
 > cf events paragdoshi-articulate
-Getting events for app env in org student-42 / space development as student-42...
+Getting events for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 
 ttime                          event                     actor                   description
 2017-04-04T18:51:00.00-0400   audit.app.update          pdoshi@pivotal.io       state: STOPPED
