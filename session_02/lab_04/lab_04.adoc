@@ -384,6 +384,8 @@ image::../../Common/images/config-manifest-entry.png[]
 
 . Run the Maven *package* command for your application and *cf push* the application from the command prompt. Watch for the 'Binding service..' status in the cf push output. It will look something similar to this:
 
++
+[source, bash]
 -----
 :
 Binding service pdoshi-config-server to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
@@ -428,6 +430,7 @@ To refresh the values without starting up the app, we need to utilize a Spring A
 
 . Add @RefreshScope annotation to the ServiceController.java:
 
++
 [source, java]
 -----
 @Controller
