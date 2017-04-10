@@ -44,7 +44,7 @@ image::../../Common/images/intellij-attendee-services-app.png[]
 +
 [source, java]
 ------
-SpringBootApplication
+@SpringBootApplication
 @EnableJpaRepositories
 @EnableDiscoveryClient
 public class AttendeeServiceApplication {
