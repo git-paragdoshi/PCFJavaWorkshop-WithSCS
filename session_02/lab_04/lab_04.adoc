@@ -288,6 +288,7 @@ spring.application.name=scsapp
 
 . To simplify working with the endpoint for this lab, we will turn off additional security for the health endpoint. Add the following to */main/resources/application.properties*:
 
++
 ------
 management.security.enabled=false
 ------
