@@ -38,14 +38,14 @@ Targeted space workshop
 API endpoint:   https://api.run.pivotal.io (API version: 2.75.0)
 User:           pdoshi@pivotal.io
 Org:            PapaJohns
-Space:          development
+Space:          workshop
 
 ----
 ====
 
 == AppsManager Login
 
-. Login to Apps Manager URL: http://run.pivotal.io. Click on the 'LOG IN'link in the upper right corner. Use the same username and password you entered when using the CF CLI
+. Log In to Apps Manager URL: http://run.pivotal.io. Click on the 'LOG IN'link in the upper right corner. Use the same username and password you entered when using the CF CLI
 +
 image::../../Common/images/lab-student-login.png[]  
 
