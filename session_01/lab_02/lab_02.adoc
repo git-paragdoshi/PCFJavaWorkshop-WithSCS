@@ -107,7 +107,7 @@ image::../../Common/images/autoscaler.png[]
 
 . Click on 'Select this plan' and fill in the following details: give a unique name in the 'Instance Name' field. The Add to Space will be auto-populated with the 'workshop' space. Choose your articulate application from the 'Bind to App' dropdown. Click on 'Add' to create an instance of App autoscaler and bind it to your app.
 + 
-image::../../Common/images/bind-autoscaler.png[]
+image::../../Common/images/add-autoscaler.png[]
 
 . After the auto scaler service is successfully created and bound to your app, you would be taken to the following service screen:
 + 
