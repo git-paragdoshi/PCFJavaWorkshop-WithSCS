@@ -10,7 +10,7 @@ In this lab we'll utilize Spring Boot and Spring Cloud to configure our applicat
 +
 image::../../Common/images/intellij-attendee-services-app.png[]
 
-. Open *pom.xml* and add the Spring Cloud Eureka Dependencies:
+. Open *pom.xml* and add the Spring Cloud Eureka Dependencies. *Update your project so that the libraries are downloaded by Maven*.
 +
 [source, xml]
 -----
@@ -39,7 +39,7 @@ image::../../Common/images/intellij-attendee-services-app.png[]
 
 -----
 
-. Thanks to Spring Cloud instructing your application to register with Eureka is as simple as adding a single annotation to your app! Add an @EnableDiscoveryClient annotation to the *AttendeeServiceApplication.java* as shown below:
+. Thanks to Spring Cloud instructing your application to register with Eureka is as simple as adding a single annotation to your app! Add an @EnableDiscoveryClient annotation to the *AttendeeServiceApplication.java* as shown below. Import *org.springframework.cloud.client.discovery.EnableDiscoveryClient*.
 
 +
 [source, java]
@@ -53,7 +53,7 @@ Complete listing of *AttendeeServiceApplication.java*:
 +
 image::../../Common/images/intellij-attendee-services-complete.png[]
 
-. Update the application.yml with three properties: A unique application name - your service will be bound to Eureka using this name, disable basic authentication as we Spring security is enabled by default for Spring Cloud Services and add the ability to auto generate ddl (tables) in our backend database.
+. Update the */src/main/resources/application.yml* with three properties: A unique application name - your service will be bound to Eureka using this name *(in this lab, the name has to be unique, unlike the Spring Cloud Config lab)*, disable basic authentication as we Spring security is enabled by default for Spring Cloud Services and add the ability to auto generate ddl (tables) in our backend database.
 
 +
 [source, yml]
@@ -69,7 +69,7 @@ spring:
 -----
 
 
-. Open the manifest.yml file and update the *name* attribute with a unique prefix and also add a unique prefix to the MySQL *service* instance and the Eureka Service Registry instance that we will create shortly. Complete listing is shown below:
+. Open the manifest.yml file and add a unique prefix to the MySQL service instance and add the Eureka service registry instance, with a unique name. Complete listing is shown below:
 +
 [source, yml]
 -----
@@ -176,14 +176,15 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 ---------------------------------------------------------------------
 
 
-. Since this UI is going to consume REST services its an awesome opportunity to use Feign.  Feign will handle *ALL* the work of invoking our services and marshalling/unmarshalling JSON into domain objects. As we will be working with JPA components, we will need to the Spring Data Rest dependency along with Feign Client dependencies in pom.xml.
+. Since this UI is going to consume REST services its an awesome opportunity to use Feign.  Feign will handle *ALL* the work of invoking our services and marshalling/unmarshalling JSON into domain objects. As we will be working with JPA components, we will need to the Spring Data Rest dependency along with Feign Client dependencies in pom.xml. *Update your project so that dependency libraries are downloaded*.
 
 + 
 [source, xml]
 -----
 <dependency>
-<groupId>org.springframework.boot</groupId>
-<artifactId>spring-boot-starter-data-rest</artifactId>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-data-rest</artifactId>
+	<version>1.4.1.RELEASE</version>
 </dependency>
 
 <dependency>
@@ -193,7 +194,7 @@ Now that we have successfully bound our Attendee micro service to the Service Re
 </dependency>
 -----
 
-. Take note of how Feign references the downstream service; its only the name of the service it will lookup from Eureka service registry - *the name of the service should be the same name that you have previously bound your microservice in Service Registry*.  Add the following interface declaration to the *ScsworkshopApplication.java*:
+. Take note of how Feign references the downstream service; its only the name of the service it will lookup from Eureka service registry - *the name of the service should be the same name that you have previously bound your microservice in Service Registry*.  Add the following interface declaration to the */src/main/java/com.example.ScsworkshopApplication.java*:
 +
 [source,java]
 ---------------------------------------------------------------------
@@ -218,7 +219,7 @@ We'll also need to add a few annotations to our boot application:
 public class ScsworkshopApplication {
 ---------------------------------------------------------------------
 +
-Completed *ScsworkshopApplication.java* class:
+Completed */src/main/java/com.example.ScsworkshopApplication.java* class:
 +
 [source,java]
 ---------------------------------------------------------------------
@@ -256,7 +257,7 @@ public class ScsworkshopApplication {
 }
 
 ---------------------------------------------------------------------
-. As we will be using the Feign client (AttendeeClient) in our REST methods, add the following instance variable and use constructor auto wire to create a valid instance that will be used later.
+. As we will be using the Feign client (AttendeeClient) in our REST methods, add the following instance variable in */src/main/java/com.example.ServicesController.java* and use AutoWired annotation so that Spring can inject an instance that will be used later.
 +
 [source, java, numbered]
 -----
@@ -270,9 +271,9 @@ public class ScsworkshopApplication {
 -----
 
 
-. We will add a couple more REST endpoint methods in *ServicesController.java* which will be invoked through UI interaction from */src/main/resources/template/services.html* file. 
+. We will add a couple more REST endpoint methods in **/src/main/java/com.example.ServicesController.java** which will be invoked through UI interaction from */src/main/resources/template/services.html* file. 
 +
-Add the following two methods to *ServiceController.java*:
+Add the following two methods to **/src/main/java/com.example.ServicesController.java**:
 +
 [source, java, numbered]
 -----
@@ -330,7 +331,7 @@ Add the following two methods to *ServiceController.java*:
 
 -----
 +
-Completed *ServicesController.java* class:
+Completed */src/main/java/com.example.ServicesController.java* class:
 +
 [source, java]
 -----
@@ -431,14 +432,8 @@ public class ServicesController {
 
 -----
 
-. We'll update the name in our *Application.properties* so that it can uniquely register with Eureka.  Update the following configuration to */src/main/resources/application.properties* with your unique prefix:
-+
-[source, yaml]
----------------------------------------------------------------------
-spring.application.name=pdoshi-scsapp
----------------------------------------------------------------------
 
-. Finally, we will update the manifest.yml to bind to the same Service Registry instance as our Attendee Service microservice:
+. Finally, we will update the manifest.yml to bind to the same Service Registry instance as our Attendee Service microservice. *At this time you can remove the *config-server* service binding, as it is not needed.
 +
 [source, yml]
 -----
@@ -461,7 +456,6 @@ applications:
   timeout: 180
   services:
     - pdoshi-service-registry
-    - pdoshi-config-server
 -----
 
 
@@ -473,8 +467,6 @@ applications:
 ---------------------------------------------------------------------
 OK
 Binding service pdoshi-service-registry to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
-OK
-Binding service pdoshi-config-server to app pdoshi-scsapp in org PapaJohns / space workshop as pdoshi@pivotal.io...
 OK
 ---------------------------------------------------------------------
 
