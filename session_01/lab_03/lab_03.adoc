@@ -239,7 +239,7 @@ buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-
 +
 ----
 > cf events paragdoshi-articulate
-Getting events for app env in org student-42 / space development as student-42...
+Getting events for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io......
 
 time                          event                     actor                   description
 2017-04-04T18:52:33.00-0400   audit.app.update          pdoshi@pivotal.io       state: STARTED
