@@ -205,8 +205,8 @@ greeting="Hello"
 	</div>
 </div>
 -----
-
- Complete */src/main/resources/template/index.html* file:
++
+Complete */src/main/resources/template/index.html* file:
 
 +
 [source, html]
