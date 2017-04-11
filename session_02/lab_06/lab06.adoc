@@ -135,7 +135,6 @@ image::../../Common/images/circuit-breaker-instance-dashboard.png[]
 [source, yml]
 ---------------------------------------------------------------------
   services:
-  - pdoshi-config-server
   - pdoshi-service-registry
   - pdoshi-circuit-breaker-dashboard
 ---------------------------------------------------------------------
