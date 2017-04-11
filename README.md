@@ -18,8 +18,8 @@ Time | Session
 10:45 AM - 11:00 AM | _Labs Review_
 11:00 AM - 11:45 AM | Lab 2: _Scaling, Auto Scaling and Zero Downtime Deployment Lab_
 11:45 PM - 12:30 PM | Lab 3: _Monitoring, Metrics and HA Lab_
-12:30 PM - 1:15 PM  | _Lunch_
-1:15  PM - 1:30 PM  | _Labs Review_ 
+12:30 PM - 1:00 PM  | _Lunch_
+1:00  PM - 1:30 PM  | _Labs Review_ 
 1:30 PM - 2:00 PM | Session 2: _Cloud Native Design and Microservices with Spring Cloud Services_
 2:00 PM - 2:30 PM | Lab 4: _Dynamic Configuration Loading with Spring Cloud Services - Config Server_
 2:30 PM - 3:15 PM | Lab 5: _MicroServices Registration and Discovery with Spring Cloud Services - Eureka_
