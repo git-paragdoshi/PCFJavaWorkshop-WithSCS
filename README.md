@@ -50,19 +50,19 @@ $ git fetch --all
 
 ## Course Materials
 
-#### Session 1 [(Slides)](session_01/Session_01.pdf): _Intro to Pivotal Cloud Foundry_
+#### Session 1 [(Slides)](session_01/Session_1_Cloud_Native_Introduction.pdf): _Intro to Pivotal Cloud Foundry_
   - [Lab 0 - Accessing the Workshop Environment](session_01/lab_00/lab_00.adoc)
   - [Lab 1 - Pushing Your First Application](session_01/lab_01/lab_01.adoc)
   - [Lab 2 - Scaling, Auto Scaling and Zero Downtime Deployment Lab](session_01/lab_02/lab_02.adoc)
   - [Lab 3 - Monitoring, Metrics and HA Lab](session_01/lab_03/lab_03.adoc)
-  - [Lab Review - PCF Architecture and PCF Push](session_01/Labs_Review_01.pdf)
-  - [Lab Review - Scaling, Metrics, Logs and HA](session_01/Labs_Review_02.pdf)
+  - [Lab Review - PCF Architecture and PCF Push](session_01/Labs_Review_01_PCF_Deep_Dive.pdf)
+  - [Lab Review - Scaling, Metrics, Logs and HA](session_01/Labs_Review_02_Zero_Dep_Services_Logs_HA.pdf)
 
-#### Session 2 [(Slides)](session_02/Session_02.pdf): _Cloud Native Design and Microservices with Spring Cloud Services_
+#### Session 2 [(Slides)](session_02/Session_2_CloudNativeDesignDev.pdf): _Cloud Native Design and Microservices with Spring Cloud Services_
   - [Lab 4 - Dynamic Configuration Loading with Spring Cloud Services - Config Server](session_02/lab_04/lab_04.adoc)
   - [Lab 5 - MicroServices Registration and Discovery with Spring Cloud Services - Eureka](session_02/lab_05/lab_05.adoc)
   - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab06.adoc)
-  - [Lab Review - Spring Cloud Services](session_02/Labs_Review_01.pdf)
+  - Lab Review - Spring Cloud Services - Discussion
 
-#### Session 3 [(Slides)](session_03/Session_03.pdf): _Continuous Integration/Continuous Delivery with PCF_
-  - [Demo - CI/CD pipeline with Jenkins and PCF](session_03/demo/demo.adoc)
+#### Session 3 [(Slides)](session_03/Session_3_Continuous_Integration_Delivery.pdf): _Continuous Integration/Continuous Delivery with PCF_
+  - Demo - CI/CD pipeline with Jenkins and PCF
