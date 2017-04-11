@@ -1,4 +1,4 @@
-= Adding Spring Cloud Config to Boot Application
+= Dynamic Configuration Loading with Spring Cloud Services - Config Server
 
 In this lab we'll utilize Spring Boot and Spring Cloud to configure our application from a configuration dynamically retrieved from a git repository. We'll then deploy it to Pivotal Cloud Foundry and auto-provision an instance of a configuration server using Pivotal Spring Cloud Services.
 
