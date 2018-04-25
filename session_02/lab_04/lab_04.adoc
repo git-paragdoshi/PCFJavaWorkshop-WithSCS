@@ -463,8 +463,7 @@ cURL:
 +
 [source, bash]
 -----
-pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$ curl -X POST http://pdoshi-scsapp.cfapps.io/refresh 
-["config.client.version","greeting"]pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$
+pdoshi@Parags-MacBook-Pro:~/start-project/SCSApp$ curl -X POST http://pdoshi-scsapp.cfapps.io/refresh ["config.client.version","greeting"]
 -----
 +
 Postman (notice the Status: 200 OK):
