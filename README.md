@@ -17,17 +17,7 @@ Time | Session
 10:45 AM - 11:00 AM | _Labs Review_
 11:00 AM - 11:45 AM | Lab 2: _Scaling, Auto Scaling and Zero Downtime Deployment Lab_
 11:45 PM - 12:30 PM | Lab 3: _Monitoring, Metrics and HA Lab_
-12:30 PM - 1:00 PM  | _Lunch_
-1:00  PM - 1:30 PM  | _Labs Review_ 
-1:30 PM - 2:00 PM | Session 2: _Cloud Native Design and Microservices with Spring Cloud Services_
-2:00 PM - 2:30 PM | Lab 4: _Dynamic Configuration Loading with Spring Cloud Services - Config Server_
-2:30 PM - 3:15 PM | Lab 5: _MicroServices Registration and Discovery with Spring Cloud Services - Eureka_
-3:15 PM - 3:30 PM | _Break_
-3:30 PM - 4:00 PM | Lab 6: _Fault Tolerant Design with Spring Cloud Services - Hystrix_
-4:00 PM - 4:15 PM | _Labs Review_
-4:15 PM - 4:45 PM | Session 3: Continuous Integration/Continuous Delivery with PCF
-4:45 PM - 5:00 PM | Demo: _CI/CD pipeline with Jenkins and PCF_
-5:00 PM - 5:30 PM | Wrap-Up & Q&A - Lessons Learnt - what doesn't work.
+12:30 PM - 1:00 PM | Wrap-Up & Q&A
 
 This is a _loose_ schedule for the day. We will adjust as necessary based on our pace through the material.
 
@@ -44,8 +34,6 @@ $ git fetch --all
 **Prerequisites**
 - [Cloud Foundry CLI](https://github.com/cloudfoundry/cli)
 - [Git Client](https://git-scm.com/downloads)
-- [Intellij Version 2016.1 or later](https://https://www.jetbrains.com/idea/download/)
-- PWS account registration complete at http://run.pivotal.io
 
 ## Course Materials
 
@@ -57,11 +45,3 @@ $ git fetch --all
   - [Lab Review - PCF Architecture and PCF Push](session_01/Labs_Review_01_PCF_Deep_Dive.pdf)
   - [Lab Review - Scaling, Metrics, Logs and HA](session_01/Labs_Review_02_Zero_Dep_Services_Logs_HA.pdf)
 
-#### Session 2 [(Slides)](session_02/Session_2_CloudNativeDesignDev.pdf): _Cloud Native Design and Microservices with Spring Cloud Services_
-  - [Lab 4 - Dynamic Configuration Loading with Spring Cloud Services - Config Server](session_02/lab_04/lab_04.adoc)
-  - [Lab 5 - MicroServices Registration and Discovery with Spring Cloud Services - Eureka](session_02/lab_05/lab_05.adoc)
-  - [Lab 6 - Fault Tolerant Design with Spring Cloud Services - Hystrix](session_02/lab_06/lab06.adoc)
-  - Lab Review - Spring Cloud Services - Discussion
-
-#### Session 3 [(Slides)](session_03/Session_3_Continuous_Integration_Delivery.pdf): _Continuous Integration/Continuous Delivery with PCF_
-  - Demo - CI/CD pipeline with Jenkins and PCF
