@@ -1,5 +1,5 @@
 # PCFJavaWorkshop-WithSCS
-Java workshop with Pivotal Cloud Foundry and Spring Cloud Services (SCS)
+Java workshop with Pivotal Cloud Foundry.
 
 
 ## Instructors
