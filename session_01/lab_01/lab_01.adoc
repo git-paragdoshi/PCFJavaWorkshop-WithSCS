@@ -68,11 +68,11 @@ You should see output similar to the following listing. Take a look at the listi
 ====
 ----
 > cf push
-Using manifest file /PCFJavaWorkshop-WithSCS/deployables/articulate/manifest.yml
+Using manifest file /Users/pdoshi/demos/PCFJavaWorkshop-WithSCS/deployables/articulate/manifest.yml
 
 Using stack cflinuxfs2...
 OK
-Creating app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Creating app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 OK
 
 Creating route paragdoshi-articulate.cfapps.io...
@@ -82,56 +82,59 @@ Binding paragdoshi-articulate.cfapps.io to paragdoshi-articulate...
 OK
 
 Uploading paragdoshi-articulate...
-Uploading app files from: /var/folders/1w/mpbw8_5s2_j491wwnlcc7vv40000gn/T/unzipped-app032543917
+Uploading app files from: /var/folders/1w/mpbw8_5s2_j491wwnlcc7vv40000gn/T/unzipped-app858851598
 Uploading 551.5K, 139 files
-Done uploading               
+Done uploading                            
 OK
 
-Starting app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Starting app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 Downloading binary_buildpack...
-Downloading staticfile_buildpack...
-Downloading java_buildpack...
-Downloading ruby_buildpack...
 Downloading nodejs_buildpack...
-Downloaded nodejs_buildpack
-Downloaded staticfile_buildpack
-Downloading php_buildpack...
-Downloading go_buildpack...
-Downloaded go_buildpack
-Downloading python_buildpack...
+Downloading java_buildpack...
+Downloading staticfile_buildpack...
+Downloading ruby_buildpack...
 Downloaded java_buildpack
 Downloading dotnet_core_buildpack...
-Downloaded dotnet_core_buildpack
+Downloaded staticfile_buildpack
 Downloading dotnet_core_buildpack_beta...
-Downloaded dotnet_core_buildpack_beta
-Downloaded php_buildpack
 Downloaded binary_buildpack
-Downloaded python_buildpack
+Downloading go_buildpack...
+Downloaded nodejs_buildpack
+Downloading python_buildpack...
+Downloaded dotnet_core_buildpack_beta
+Downloading php_buildpack...
+Downloaded dotnet_core_buildpack
+Downloading hwc_buildpack...
 Downloaded ruby_buildpack
-Creating container
-Successfully created container
+Downloaded python_buildpack
+Downloaded go_buildpack
+Downloaded hwc_buildpack
+Downloaded php_buildpack
+Cell e3f7a981-1382-4092-bdf5-32cafd68a7fb creating container for instance d53f3fcf-7640-4551-b98b-4a2b9bc73851
+Cell e3f7a981-1382-4092-bdf5-32cafd68a7fb successfully created container for instance d53f3fcf-7640-4551-b98b-4a2b9bc73851
 Downloading app package...
 Downloaded app package (27.6M)
------> Java Buildpack Version: v3.14 (offline) | https://github.com/cloudfoundry/java-buildpack.git#d5d58c6
------> Downloading Open Jdk JRE 1.8.0_121 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_121.tar.gz (found in cache)
-       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.1s)
------> Downloading Open JDK Like Memory Calculator 2.0.2_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-2.0.2_RELEASE.tar.gz (found in cache)
-       Memory Settings: -Xss349K -Xmx681574K -XX:MaxMetaspaceSize=104857K -Xms681574K -XX:MetaspaceSize=104857K
------> Downloading Container Certificate Trust Store 2.0.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-certificate-trust-store/container-certificate-trust-store-2.0.0_RELEASE.jar (found in cache)
-       Adding certificates to .java-buildpack/container_certificate_trust_store/truststore.jks (0.4s)
------> Downloading Spring Auto Reconfiguration 1.10.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-1.10.0_RELEASE.jar (found in cache)
+-----> Java Buildpack v4.16.1 (offline) | https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
+-----> Downloading Jvmkill Agent 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/jvmkill/trusty/x86_64/jvmkill-1.16.0_RELEASE.so (found in cache)
+-----> Downloading Open Jdk JRE 1.8.0_192 from https://java-buildpack.cloudfoundry.org/openjdk/trusty/x86_64/openjdk-1.8.0_192.tar.gz (found in cache)
+       Expanding Open Jdk JRE to .java-buildpack/open_jdk_jre (1.4s)
+       JVM DNS caching disabled in lieu of BOSH DNS caching
+-----> Downloading Open JDK Like Memory Calculator 3.13.0_RELEASE from https://java-buildpack.cloudfoundry.org/memory-calculator/trusty/x86_64/memory-calculator-3.13.0_RELEASE.tar.gz (found in cache)
+       Loaded Classes: 16466, Threads: 250
+-----> Downloading Client Certificate Mapper 1.8.0_RELEASE from https://java-buildpack.cloudfoundry.org/client-certificate-mapper/client-certificate-mapper-1.8.0_RELEASE.jar (found in cache)
+-----> Downloading Container Security Provider 1.16.0_RELEASE from https://java-buildpack.cloudfoundry.org/container-security-provider/container-security-provider-1.16.0_RELEASE.jar (found in cache)
+-----> Downloading Spring Auto Reconfiguration 2.5.0_RELEASE from https://java-buildpack.cloudfoundry.org/auto-reconfiguration/auto-reconfiguration-2.5.0_RELEASE.jar (found in cache)
 Exit status 0
 Uploading droplet, build artifacts cache...
-Uploading build artifacts cache...
 Uploading droplet...
-Uploaded build artifacts cache (109B)
-Uploaded droplet (73M)
+Uploading build artifacts cache...
+Uploaded build artifacts cache (132B)
+Uploaded droplet (74.3M)
 Uploading complete
-Destroying container
-Successfully destroyed container
+Cell e3f7a981-1382-4092-bdf5-32cafd68a7fb stopping instance d53f3fcf-7640-4551-b98b-4a2b9bc73851
+Cell e3f7a981-1382-4092-bdf5-32cafd68a7fb destroying container for instance d53f3fcf-7640-4551-b98b-4a2b9bc73851
+Cell e3f7a981-1382-4092-bdf5-32cafd68a7fb successfully destroyed container for instance d53f3fcf-7640-4551-b98b-4a2b9bc73851
 
-0 of 1 instances running, 1 starting
-0 of 1 instances running, 1 starting
 0 of 1 instances running, 1 starting
 1 of 1 instances running
 
@@ -140,21 +143,22 @@ App started
 
 OK
 
-App paragdoshi-articulate was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher`
+App paragdoshi-articulate was started using this command `JAVA_OPTS="-agentpath:$PWD/.java-buildpack/open_jdk_jre/bin/jvmkill-1.16.0_RELEASE=printHeapHistogram=1 -Djava.io.tmpdir=$TMPDIR -Djava.ext.dirs=$PWD/.java-buildpack/container_security_provider:$PWD/.java-buildpack/open_jdk_jre/lib/ext -Djava.security.properties=$PWD/.java-buildpack/java_security/java.security $JAVA_OPTS" && CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-3.13.0_RELEASE -totMemory=$MEMORY_LIMIT -loadedClasses=17245 -poolType=metaspace -stackThreads=250 -vmOptions="$JAVA_OPTS") && echo JVM Memory Configuration: $CALCULATED_MEMORY && JAVA_OPTS="$JAVA_OPTS $CALCULATED_MEMORY" && MALLOC_ARENA_MAX=2 SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher`
 
-Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Showing health and status for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 OK
 
 requested state: started
 instances: 1/1
 usage: 1G x 1 instances
 urls: paragdoshi-articulate.cfapps.io
-last uploaded: Mon Apr 3 15:42:59 UTC 2017
+last uploaded: Sun Oct 21 01:41:56 UTC 2018
 stack: cflinuxfs2
-buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
+buildpack: client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8 java-main java-opts java-security jvmkill-agent=1.16.0_RELEASE open-jd...
 
      state     since                    cpu    memory         disk           details
-#0   running   2017-04-03 11:43:56 AM   0.0%   420.4M of 1G   154.6M of 1G
+#0   running   2018-10-20 09:44:20 PM   0.5%   179.2M of 1G   156.6M of 1G
+
 
 
 ----
