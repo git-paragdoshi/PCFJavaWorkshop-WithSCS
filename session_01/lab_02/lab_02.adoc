@@ -101,9 +101,9 @@ image::../../Common/images/lab-scale-down.png[]
 As you have seen it is pretty easy to scale up or down using the cf CLI or Apps Manager, but there are times when you would like the app to auto scale based on some pre-determined conditions. Let us walk through the steps where your application will take advantage of the Auto Scaler service.
 
 . Navigate to http://run.pivotal.io and Log in, if redirected to login screen. 
-. After login, click on the 'Marketplace' link on the left hand menu option as shown in the image below:
+. After login, click on your space and then click on your app. There will be an Autoscaling toggle button. Toggle it to 'On' and you will see the below screen :
 +
-image::../../Common/images/marketplace-link.png[]
+image::../../Common/images/autoscaler-toggle-on.png[]
 
 . Click on App Autoscaler and you will see a screen similar to the one below. 
 + 
