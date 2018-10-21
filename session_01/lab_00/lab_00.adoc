@@ -52,4 +52,4 @@ image::../../Common/images/lab-student-login.png[]
 . Post Log In Screen:
 
 +
-image::../../Common/images/lab-student-loggedin.png[]
+image::../../Common/images/lab-student-loggedin-new.png[]
