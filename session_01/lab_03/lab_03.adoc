@@ -29,15 +29,17 @@ Here are some interesting subsets of one output from that command:
 ====
 ----
 > cf logs paragdoshi-articulate --recent
-Connected, dumping recent logs for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Retrieving logs for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-2017-04-03T13:04:50.21-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:04:50.212  INFO 14 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2017-04-03T13:04:50.21-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:04:50.215  INFO 14 --- [           main] i.p.e.articulate.ArticulateApplication   : Started ArticulateApplication in 11.981 seconds (JVM running for 13.001)
-2017-04-03T13:04:52.25-0400 [CELL/0]     OUT Container became healthy
-2017-04-03T13:13:03.62-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.628  INFO 14 --- [nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
-2017-04-03T13:13:03.62-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.628  INFO 14 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
-2017-04-03T13:13:03.66-0400 [APP/PROC/WEB/0]OUT 2017-04-03 17:13:03.668  INFO 14 --- [nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 40 ms
-2017-04-03T13:13:04.35-0400 [RTR/5]      OUT paragdoshi-articulate.cfapps.io - [2017-04-03T17:13:03.595+0000] "GET / HTTP/1.1" 200 0 7830 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" "10.10.2.141:21261" "10.10.148.95:61096" x_forwarded_for:"208.102.173.112" x_forwarded_proto:"https" vcap_request_id:"ebd83dd8-9883-4645-4e1f-dff10e1109c0" response_time:0.759711021 app_id:"8e5b3fd9-272b-41bc-8a5e-b08528e06da0" app_index:"0" x_b3_traceid:"4caa316b231ffbe0" x_b3_spanid:"4caa316b231ffbe0" x_b3_parentspanid:"-"
+   2018-10-21T08:02:51.95-0400 [APP/PROC/WEB/1] OUT 2018-10-21 12:02:51.953  INFO 16 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.30
+   2018-10-21T08:02:52.08-0400 [APP/PROC/WEB/1] OUT 2018-10-21 12:02:52.085  INFO 16 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+   2018-10-21T08:02:52.08-0400 [APP/PROC/WEB/1] OUT 2018-10-21 12:02:52.086  INFO 16 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3331 ms
+:
+:
+2018-10-21T08:02:57.75-0400 [RTR/3] OUT paragdoshi-articulate.cfapps.io - [2018-10-21T12:02:57.549+0000] "GET /bluegreen-check HTTP/1.1" 200 0 21 "https://paragdoshi-articulate.cfapps.io/bluegreen" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "10.10.66.181:10624" "10.10.149.107:61216" x_forwarded_for:"50.5.164.229, 10.10.66.181" x_forwarded_proto:"https" vcap_request_id:"07efcdbf-56d2-431e-51c2-dee0a7b2fc9c" response_time:0.200678981 app_id:"f2fba0f2-7d04-477c-ba59-4d06ccb9706b" app_index:"1" x_b3_traceid:"f4ace69f310b34a0" x_b3_spanid:"f4ace69f310b34a0" x_b3_parentspanid:"-"
+:
+:
+2018-10-21T08:02:59.32-0400 [CELL/0] OUT Container became healthy
 
 
 ----
@@ -53,6 +55,7 @@ These events are properly interwoven based on time, giving you an accurate pictu
 +
 ----
 > cf logs paragdoshi-articulate
+Retrieving logs for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 ----
 +
 You can try various things like refreshing the browser and triggering stop/start events to see logs being generated.
