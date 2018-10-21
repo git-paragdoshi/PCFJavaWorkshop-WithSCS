@@ -68,7 +68,7 @@ Cloud Foundry's https://docs.pivotal.io/pivotalcf/1-9/concepts/architecture/#nsy
 +
 ----
 > cf logs paragdoshi-articulate
-Connected, tailing logs for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Retrieving logs for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 ----
 
 . If you do not have more than one application instance running, execute the scale command to scale to 2 or more application instances.  Visit the application in the browser, click on 'Scale & HA' link and click on the `Kill' button. This button will trigger an Environment.Exit(-1) causing the Health Manager to observe an application instance crash:
