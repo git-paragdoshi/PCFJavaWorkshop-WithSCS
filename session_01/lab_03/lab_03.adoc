@@ -84,14 +84,14 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 +
 ====
 ----
-2017-04-04T18:39:37.37-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:37.375  WARN 17 --- [nio-8080-exec-8] i.p.e.a.controller.ArticulateController  : *** The system is shutting down. ***
-2017-04-04T18:39:37.37-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:37.377  WARN 17 --- [       Thread-5] i.p.e.a.controller.ArticulateController  : killing shortly Thread-5
-2017-04-04T18:39:37.73-0400 [RTR/4]      OUT paragdoshi-articulate.cfapps.io - [2017-04-04T22:39:37.721+0000] "GET /images/basics1.png HTTP/1.1" 200 0 167920 "https://paragdoshi-articulate.cfapps.io/basics?doit=true" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" "10.10.2.141:1538" "10.10.148.81:61131" x_forwarded_for:"208.102.173.112" x_forwarded_proto:"https" vcap_request_id:"f130b6ae-3022-4173-49ae-592158159480" response_time:0.009626627 app_id:"8e5b3fd9-272b-41bc-8a5e-b08528e06da0" app_index:"1" x_b3_traceid:"916cefcd630e8d4b" x_b3_spanid:"916cefcd630e8d4b" x_b3_parentspanid:"-"
-2017-04-04T18:39:42.38-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:42.377  WARN 17 --- [       Thread-5] i.p.e.a.controller.ArticulateController  : killed Thread-5
-2017-04-04T18:39:42.65-0400 [APP/PROC/WEB/0]OUT Exit status 0
-2017-04-04T18:39:42.66-0400 [CELL/0]     OUT Exit status 0
-2017-04-04T18:39:42.69-0400 [CELL/0]     OUT Destroying container
-2017-04-04T18:39:42.71-0400 [API/4]      OUT App instance exited with guid 8e5b3fd9-272b-41bc-8a5e-b08528e06da0 payload: {"instance"=>"", "index"=>0, "reason"=>"CRASHED", "exit_description"=>"2 error(s) occurred:\n\n* 2 error(s) occurred:\n\n* Codependent step exited\n* cancelled\n* cancelled", "crash_count"=>2, "crash_timestamp"=>1491345582680005783, "version"=>"e0e40fba-3195-432b-9c0f-5eec45f150d2"}
+  2018-10-21T08:35:37.34-0400 [RTR/4] OUT 
+   2018-10-21T08:35:37.07-0400 [CELL/SSHD/0] OUT Exit status 0
+   2018-10-21T08:35:37.34-0400 [RTR/8] OUT paragdoshi-articulate.cfapps.io - [2018-10-21T12:35:37.339+0000] "GET /tutorial/basics-12f.html HTTP/1.1" 502 0 67 "https://paragdoshi-articulate.cfapps.io/basics" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" "10.10.2.233:12408" "10.10.148.137:61202" x_forwarded_for:"50.5.164.229, 10.10.2.233" x_forwarded_proto:"https" vcap_request_id:"49bfe7bb-74e3-4495-7eb1-32a3d4a0260e" response_time:0.006462919 app_id:"f2fba0f2-7d04-477c-ba59-4d06ccb9706b" app_index:"0" x_b3_traceid:"05d61f2723f3b30a" x_b3_spanid:"05d61f2723f3b30a" x_b3_parentspanid:"-"
+   2018-10-21T08:35:37.34-0400 [RTR/8] OUT 
+   2018-10-21T08:35:37.56-0400 [API/13] OUT Process has crashed with type: "web"
+   2018-10-21T08:35:37.57-0400 [API/13] OUT App instance exited with guid f2fba0f2-7d04-477c-ba59-4d06ccb9706b payload: {"instance"=>"099a03a1-253e-4aff-714c-704b", "index"=>0, "cell_id"=>"427f4537-d113-4050-8f1f-eb1875759ae8", "reason"=>"CRASHED", "exit_description"=>"Codependent step exited", "crash_count"=>1, "crash_timestamp"=>1540125337532293427, "version"=>"ea7ebbfa-1d24-4d0a-8832-572a1b510b6b"}
+   2018-10-21T08:35:37.56-0400 [CELL/0] OUT Cell 427f4537-d113-4050-8f1f-eb1875759ae8 stopping instance 099a03a1-253e-4aff-714c-704b
+ 
 
 ----
 <1> Just before issuing the `Environment.Exit(-1)` call, the application logs that the kill switch was clicked.
@@ -103,15 +103,15 @@ Also, if you're paying attention to the log tail, you'll see some interesting lo
 +
 ====
 ----
-2017-04-04T18:39:43.07-0400 [CELL/0]     OUT Creating container
-2017-04-04T18:39:43.39-0400 [CELL/0]     OUT Successfully destroyed container
-2017-04-04T18:39:46.67-0400 [CELL/0]     OUT Starting health monitoring of container
-2017-04-04T18:39:37.48-0400 [RTR/0]      OUT paragdoshi-articulate.cfapps.io - [2017-04-04T22:39:37.473+0000] "GET /webjars/morrisjs/0.5.1/morris.css HTTP/1.1" 200 0 433 "https://paragdoshi-articulate.cfapps.io/basics?doit=true" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36" "10.10.2.141:43497" "10.10.147.161:61134" x_forwarded_for:"208.102.173.112" x_forwarded_proto:"https" vcap_request_id:"994f45d5-37f2-4f94-79ad-6958b21cb0c5" response_time:0.007814256 app_id:"8e5b3fd9-272b-41bc-8a5e-b08528e06da0" app_index:"0" x_b3_traceid:"2814b159395e4a17" x_b3_spanid:"2814b159395e4a17" x_b3_parentspanid:"-"
-2017-04-04T18:39:49.05-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:49.046  INFO 14 --- [           main] i.p.e.articulate.ArticulateApplication   : The following profiles are active: cloud
-2017-04-04T18:39:49.02-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:49.028  INFO 14 --- [           main] nfigurationApplicationContextInitializer : Adding cloud service auto-reconfiguration to ApplicationContext
-2017-04-04T18:39:49.04-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:49.046  INFO 14 --- [           main] i.p.e.articulate.ArticulateApplication   : Starting ArticulateApplication on e1444c83-4b34-45e7-42ad-10e2ecac6b67 with PID 14 (/home/vcap/app started by vcap in /home/vcap/app)
-2017-04-04T18:39:49.87-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:49.873  INFO 14 --- [           main] urceCloudServiceBeanFactoryPostProcessor : No beans of type javax.sql.DataSource found. Skipping auto-reconfiguration.
-2017-04-04T18:39:49.86-0400 [APP/PROC/WEB/0]OUT 2017-04-04 22:39:49.869  INFO 14 --- [           main] urceCloudServiceBeanFactoryPostProcessor : Auto-reconfiguring beans of type javax.sql.DataSource
+  2018-10-21T08:35:37.72-0400 [CELL/0] OUT Cell c7716979-bc8a-418f-85df-e185c1b00ad1 creating container for instance 98be29ef-91f7-42ef-5127-7033
+   2018-10-21T08:35:37.56-0400 [CELL/0] OUT Cell 427f4537-d113-4050-8f1f-eb1875759ae8 destroying container for instance 099a03a1-253e-4aff-714c-704b
+   2018-10-21T08:35:37.78-0400 [PROXY/0] OUT Exit status 137
+   2018-10-21T08:35:38.05-0400 [CELL/0] OUT Cell 427f4537-d113-4050-8f1f-eb1875759ae8 successfully destroyed container for instance 099a03a1-253e-4aff-714c-704b
+   2018-10-21T08:35:38.26-0400 [CELL/0] OUT Cell c7716979-bc8a-418f-85df-e185c1b00ad1 successfully created container for instance 98be29ef-91f7-42ef-5127-7033
+   2018-10-21T08:35:42.44-0400 [CELL/0] OUT Starting health monitoring of container
+   :
+   :
+   2018-10-21T08:35:55.08-0400 [CELL/0] OUT Container became healthy
 
 ----
 <1> The CELL indicates that it is starting another instance of the application as a result of the Health Manager observing a difference between the desired and actual state (i.e. running instances = 1 vs. running instances = 0).
