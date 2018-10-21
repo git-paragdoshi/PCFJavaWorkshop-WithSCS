@@ -12,7 +12,7 @@ In the next two labs we'll explore Pivotal Cloud Foundry operations.
 +
 ----
 > cf scale paragdoshi-articulate -i 3
-Scaling app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Scaling app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 OK
 
 ----
@@ -24,21 +24,23 @@ In reporting `OK`, the CLI is letting you know that the additional requested ins
 ====
 ----
 > cf app paragdoshi-articulate
-Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
-OK
+Showing health and status for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-requested state: started
-instances: 3/3
-usage: 1G x 3 instances
-urls: paragdoshi-articulate.cfapps.io
-last uploaded: Mon Apr 3 17:02:55 UTC 2017
-stack: cflinuxfs2
-buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
+name:              paragdoshi-articulate
+requested state:   started
+instances:         3/3
+usage:             1G x 3 instances
+routes:            paragdoshi-articulate.cfapps.io
+last uploaded:     Sat 20 Oct 21:41:56 EDT 2018
+stack:             cflinuxfs2
+buildpack:         client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE
+                   java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
+                   java-main java-opts java-security jvmkill-agent=1.16.0_RELEASE open-jd...
 
-     state     since                    cpu      memory         disk           details
-#0   running   2017-04-03 01:04:52 PM   0.1%     442.9M of 1G   154.6M of 1G
-#1   running   2017-04-03 02:46:56 PM   212.4%   459.9M of 1G   154.6M of 1G
-#2   running   2017-04-03 02:46:52 PM   1.4%     434.5M of 1G   154.6M of 1G
+     state     since                  cpu      memory         disk           details
+#0   running   2018-10-21T01:44:20Z   0.4%     191.6M of 1G   156.6M of 1G   
+#1   running   2018-10-21T01:51:36Z   141.1%   153.8M of 1G   156.6M of 1G   
+#2   running   2018-10-21T01:51:26Z   155.3%   192.7M of 1G   156.6M of 1G   
 >
 ----
 ====
@@ -61,7 +63,7 @@ This makes for very dynamic and rapid reconfiguration!
 +
 ----
 > cf scale paragdoshi-articulate -i 1
-Scaling app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Scaling app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 OK
 
 ----
@@ -70,19 +72,21 @@ OK
 +
 ----
 > cf app paragdoshi-articulate
-Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
-OK
+Showing health and status for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-requested state: started
-instances: 1/1
-usage: 1G x 1 instances
-urls: paragdoshi-articulate.cfapps.io
-last uploaded: Mon Apr 3 17:02:55 UTC 2017
-stack: cflinuxfs2
-buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
+name:              paragdoshi-articulate
+requested state:   started
+instances:         1/1
+usage:             1G x 1 instances
+routes:            paragdoshi-articulate.cfapps.io
+last uploaded:     Sat 20 Oct 21:41:56 EDT 2018
+stack:             cflinuxfs2
+buildpack:         client-certificate-mapper=1.8.0_RELEASE container-security-provider=1.16.0_RELEASE
+                   java-buildpack=v4.16.1-offline-https://github.com/cloudfoundry/java-buildpack.git#41b8ff8
+                   java-main java-opts java-security jvmkill-agent=1.16.0_RELEASE open-jd...
 
-     state     since                    cpu    memory         disk           details
-#0   running   2017-04-03 01:04:52 PM   0.3%   448.1M of 1G   154.6M of 1G
+     state     since                  cpu    memory         disk           details
+#0   running   2018-10-21T01:44:20Z   0.5%   191.6M of 1G   156.6M of 1G   
 
 ----
 +
