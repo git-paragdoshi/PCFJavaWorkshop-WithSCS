@@ -101,13 +101,13 @@ image::../../Common/images/lab-scale-down.png[]
 As you have seen it is pretty easy to scale up or down using the cf CLI or Apps Manager, but there are times when you would like the app to auto scale based on some pre-determined conditions. Let us walk through the steps where your application will take advantage of the Auto Scaler service.
 
 . Navigate to http://run.pivotal.io and Log in, if redirected to login screen. 
-. After login, click on your space and then click on your app. There will be an Autoscaling toggle button. Toggle it to 'On' and you will see the below screen :
+. After login, click on your space and then click on your app. There will be an Autoscaling toggle button. Toggle it to 'On' and you will see the below screen, Note that by turning on autoscaler, it scales the app to an additional instance by default :
 +
 image::../../Common/images/autoscaler-toggle-on.png[]
 
-. Click on App Autoscaler and you will see a screen similar to the one below. 
+. Click on Manage Autoscaler link and you can now set autoscaling rules like mininum and maximum instances, scheduling rules etc.. 
 + 
-image::../../Common/images/autoscaler.png[]
+image::../../Common/images/manage-auto-scaler-new.png[]
 
 . Click on 'Select this plan' and fill in the following details: give a unique name in the 'Instance Name' field. The Add to Space will be auto-populated with the 'workshop' space. Choose your articulate application from the 'Bind to App' dropdown. Click on 'Add' to create an instance of App autoscaler and bind it to your app.
 + 
