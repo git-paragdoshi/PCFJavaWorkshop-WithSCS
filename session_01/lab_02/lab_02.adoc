@@ -130,7 +130,7 @@ image::../../Common/images/app-traffic.png[]
 
 . When you navigate to the App Manager, you will see two articulate apps but with different routes. In a blue-green deployment, v2 is the newer version of your app that you want to release to the world. 
 +
-image::../../Common/images/same-apps-diff-routes.png[]
+image::../../Common/images/same-apps-diff-routes-new.png[]
 
 . When you click on the v2 articulate app link, it will take you to the articulate app instance that is servicing that particular route. In App Manager, add an additional route to v2 version of the app. This additional route will be the same route as serviced by the first articulate app. In essence, we are trying to divert some amount of traffic to the newer version of the apps and the remaining traffic to the older version of the app. Click on the 'Route' link for the v2 app and click on 'Map a Route' button. In the text field, enter the host (sub-domain) of your previous application - in my case, it is paragdoshi-articulate. The domain name is available as a dropdown value on the screen. After adding another route, you will see something simiar to below:
 
