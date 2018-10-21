@@ -139,30 +139,26 @@ Take a look at the events that have transpired so far for our deployment of `wor
 > cf events paragdoshi-articulate
 Getting events for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
 
-time                          event                   actor                   description
-2017-04-04T18:36:48.00-0400   audit.app.process.crash   web                   index: 0, reason: CRASHED, exit_description: 2 error(s) occurred:
+Getting events for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-                                                                               * 2 error(s) occurred:
-
-                                                                              * Codependent step exited
-                                                                              * cancelled
-                                                                              * cancelled
-                                                                     
-2017-04-04T18:32:52.00-0400   audit.app.update          pdoshi@pivotal.io       instances: 2
-2017-04-04T18:11:07.00-0400   audit.app.update          pdoshi@pivotal.io
-2017-04-04T18:11:07.00-0400   audit.app.map-route       pdoshi@pivotal.io
-2017-04-04T17:50:05.00-0400   audit.app.update          pdoshi@pivotal.io
-2017-04-04T17:50:04.00-0400   audit.app.unmap-route     pdoshi@pivotal.io
-2017-04-04T17:47:04.00-0400   audit.app.update          pdoshi@pivotal.io       instances: 1
-2017-04-04T07:48:59.00-0400   audit.app.update          autoscaling_service     instances: 2
-2017-04-04T07:40:41.00-0400   audit.app.update          pdoshi@pivotal.io       instances: 1
-2017-04-04T07:30:55.00-0400   audit.app.update          autoscaling_service     instances: 2
-2017-04-03T15:27:12.00-0400   audit.app.update          pdoshi@pivotal.io       instances: 1
-2017-04-03T14:46:37.00-0400   audit.app.update          pdoshi@pivotal.io       instances: 3
-2017-04-03T13:03:07.00-0400   audit.app.update          pdoshi@pivotal.io       state: STARTED
-2017-04-03T13:02:44.00-0400   audit.app.update          pdoshi@pivotal.io
-2017-04-03T13:02:44.00-0400   audit.app.map-route       pdoshi@pivotal.io
-2017-04-03T13:02:43.00-0400   audit.app.create          pdoshi@pivotal.io       disk_quota: 1024, instances: 1, memory: 1024, state: STOPPED, environment_json: PRIVATE DATA HIDDEN
+time                          event                      actor                   description
+2018-10-21T08:35:37.00-0400   app.crash                  paragdoshi-articulate   index: 0, reason: CRASHED, exit_description: Codependent step exited
+2018-10-21T08:35:37.00-0400   audit.app.process.crash    web                     index: 0, reason: CRASHED, exit_description: Codependent step exited
+2018-10-21T08:34:30.00-0400   audit.app.process.scale    pdoshi@pivotal.io       instances: 2
+2018-10-21T08:25:50.00-0400   audit.app.start            pdoshi@pivotal.io
+2018-10-21T08:25:48.00-0400   audit.app.stop             pdoshi@pivotal.io
+2018-10-21T08:24:40.00-0400   audit.app.update           pdoshi@pivotal.io
+2018-10-21T08:24:40.00-0400   audit.app.map-route        pdoshi@pivotal.io
+2018-10-21T08:24:05.00-0400   audit.app.update           pdoshi@pivotal.io
+2018-10-21T08:24:05.00-0400   audit.app.unmap-route      pdoshi@pivotal.io
+2018-10-21T08:15:46.00-0400   audit.app.process.scale    pdoshi@pivotal.io       instances: 1
+2018-10-21T08:02:36.00-0400   audit.app.droplet.create   pdoshi@pivotal.io
+2018-10-21T08:02:13.00-0400   audit.app.update           pdoshi@pivotal.io       state: STARTED
+2018-10-21T08:02:12.00-0400   audit.app.build.create     pdoshi@pivotal.io
+2018-10-21T08:02:12.00-0400   audit.app.update           pdoshi@pivotal.io       state: STOPPED
+2018-10-21T08:02:04.00-0400   audit.app.update           autoscaling_service     instances: 2
+2018-10-21T08:02:00.00-0400   audit.app.upload-bits      pdoshi@pivotal.io
+2018-10-21T08:01:57.00-0400   audit.app.update           pdoshi@pivotal.io       disk_quota: 1024, instances: 1, memory: 1024, environment_json: [PRIVATE DATA HIDDEN]
 ----
 <1> Events are sorted newest to oldest, so we'll start from the bottom.
 Here we see the `app.create` event, which created our application's record and stored all of its metadata (e.g. `memory: 1024`).
@@ -177,7 +173,7 @@ Here we see the `app.create` event, which created our application's record and s
 +
 ----
 > cf stop paragdosh-articulate
-Stopping app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Stopping app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 OK
 
 ----
@@ -186,17 +182,10 @@ OK
 +
 ----
 > cf events paragdoshi-articulate
-Getting events for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Getting events for app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-ttime                          event                     actor                   description
-2017-04-04T18:51:00.00-0400   audit.app.update          pdoshi@pivotal.io       state: STOPPED
-2017-04-04T18:39:42.00-0400   app.crash                 paragdoshi-articulate   index: 0, reason: CRASHED, exit_description: 2 error(s) occurred:
-
-                                                                                * 2 error(s) occurred:
-
-                                                                                * Codependent step exited
-                                                                                * cancelled
-                                                                                * cancelled
+time                          event                      actor                   description
+2018-10-21T08:42:58.00-0400   audit.app.update           pdoshi@pivotal.io       state: STOPPED
 
 ----
 
@@ -204,45 +193,28 @@ ttime                          event                     actor                  
 +
 ----
 > cf start paragdoshi-articulate
-Starting app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
+Starting app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
-0 of 2 instances running, 2 starting
-0 of 2 instances running, 2 starting
-0 of 2 instances running, 2 starting
-0 of 2 instances running, 2 starting
-0 of 2 instances running, 2 starting
-0 of 2 instances running, 2 starting
-1 of 2 instances running, 1 starting
-
+Waiting for app to start...
 App started
 
 
 OK
 
-App paragdoshi-articulate was started using this command `CALCULATED_MEMORY=$($PWD/.java-buildpack/open_jdk_jre/bin/java-buildpack-memory-calculator-2.0.2_RELEASE -memorySizes=metaspace:64m..,stack:228k.. -memoryWeights=heap:65,metaspace:10,native:15,stack:10 -memoryInitials=heap:100%,metaspace:100% -stackThreads=300 -totMemory=$MEMORY_LIMIT) && JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh $CALCULATED_MEMORY -Djavax.net.ssl.trustStore=$PWD/.java-buildpack/container_certificate_trust_store/truststore.jks -Djavax.net.ssl.trustStorePassword=java-buildpack-trust-store-password" && SERVER_PORT=$PORT eval exec $PWD/.java-buildpack/open_jdk_jre/bin/java $JAVA_OPTS -cp $PWD/. org.springframework.boot.loader.JarLauncher`
-
-Showing health and status for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io...
-OK
-
-requested state: started
-instances: 2/2
-usage: 1G x 2 instances
-urls: paragdoshi-articulate.cfapps.io
-last uploaded: Mon Apr 3 17:02:55 UTC 2017
-stack: cflinuxfs2
-buildpack: container-certificate-trust-store=2.0.0_RELEASE java-buildpack=v3.14-offline-https://github.com/cloudfoundry/java-buildpack.git#d5d58c6 java-main open-jdk-like-jre=1.8.0_121 open-jdk-like-memory-calculator=2.0.2_RELEASE spring-auto-reconfiguration=1.10...
-
-     state      since                    cpu    memory         disk           details
-#0   starting   2017-04-04 06:52:33 PM   0.0%   299.7M of 1G   154.6M of 1G
-#1   running    2017-04-04 06:53:06 PM   0.0%   0 of 1G        0 of 1G
-
+name:              paragdoshi-articulate
+requested state:   started
+instances:         2/2
+usage:             1G x 2 instances
+routes:            paragdoshi-articulate.cfapps.io
+:
+:
 ----
 
 . And again, view the additional `app.update` event:
 +
 ----
 > cf events paragdoshi-articulate
-Getting events for app paragdoshi-articulate in org PapaJohns / space workshop as pdoshi@pivotal.io......
+Starting app paragdoshi-articulate in org north-area / space development as pdoshi@pivotal.io...
 
 time                          event                     actor                   description
 2017-04-04T18:52:33.00-0400   audit.app.update          pdoshi@pivotal.io       state: STARTED
