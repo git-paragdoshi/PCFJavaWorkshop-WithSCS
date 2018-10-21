@@ -115,7 +115,7 @@ For this lab, we will simulate a zero downtime deployment by using Routes and de
 
 . When you navigate to your app in App Manager and click on 'Route' link, you will see that your app is bound to one Route which is in the appname.domainname format.
 +
-image::../../Common/images/app-route.png[]
+image::../../Common/images/app-route-new.png[]
 
 . When you click on your app's route, it opens the app in a new window. Click on the Blue-Green menu option at the top and 'start' the simulation. This will send requests to the route and show which app is servicing the request for that route. As can be seen below, all requests are serviced by the articulate instance of your app.
 +
