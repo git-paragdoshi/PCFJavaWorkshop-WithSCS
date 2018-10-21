@@ -109,32 +109,6 @@ image::../../Common/images/autoscaler-toggle-on.png[]
 + 
 image::../../Common/images/manage-auto-scaler-new.png[]
 
-. Click on 'Select this plan' and fill in the following details: give a unique name in the 'Instance Name' field. The Add to Space will be auto-populated with the 'workshop' space. Choose your articulate application from the 'Bind to App' dropdown. Click on 'Add' to create an instance of App autoscaler and bind it to your app.
-+ 
-image::../../Common/images/add-autoscaler.png[]
-
-. After the auto scaler service is successfully created and bound to your app, you would be taken to the following service screen:
-+ 
-image::../../Common/images/autoscaler-service-page.png[]
-
-. Click on the App Autoscaler service and you will go into the details page. Click on the 'Manage' link as shown below:
-+ 
-image::../../Common/images/manage-autoscaler.png[]
-
-. This will open the Autoscaler dashboard. Click on 'Instance Limits' edit link and enter 2 for Minimum and 5 for Maximum. Hit Save.
-+ 
-image::../../Common/images/edit-autoscaler.png[]
-
-. Click on the toggle button to Enable Autoscaler for your articulate app. 
-+ 
-image::../../Common/images/autoscaler-enabled.png[]
-
-. Going back to App Manager and clicking on your articulate app, you will notice that within 30 odd seconds or less, your app will get automatically auto-scaled to two instances. 
-+ 
-image::../../Common/images/autoscaled.png[]
-
-
-
 == Zero Downtime Deployment
 
 For this lab, we will simulate a zero downtime deployment by using Routes and deploying the same articulate application and diverting traffic from one app to another.
