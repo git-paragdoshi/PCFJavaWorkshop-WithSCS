@@ -1,4 +1,4 @@
-# PCFJavaWorkshop-WithSCS
+# PCFJavaWorkshop
 Java workshop with Pivotal Cloud Foundry.
 
 
