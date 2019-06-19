@@ -13,19 +13,26 @@
 . Log In to Pivotal Cloud Foundry:
 +
 ----
-> cf login
+> cf login --sso
 ----
 +
-Follow the prompts, entering the username (email address) and password that you used to register for your account.
+You will be asked to visit a URL similar to the one below and login in to get a temporary passcode.
 +
-====
 ----
-> cf login
+cf login --sso
 API endpoint: https://api.run.pivotal.io
 
-Email> pdoshi@pivotal.io
-
-Password>
+Temporary Authentication Code ( Get one at https://login.run.pivotal.io/passcode )> 
+----
++
+When you visit the URL mentioned above, enter your userid and password to get authenticated by your Identity Provider. Post authentication, you will see a passcode shown on the web browser (like shown below). Copy the passcode and paste the passcode on the command prompt/terminal window.
++
+image::../../Common/images/lab-student-passcode.png[]
++
+After entering the passcode, cloud foundry will authenticate it and set your target to your org and space. 
++
+----
+Temporary Authentication Code ( Get one at https://login.run.pivotal.io/passcode )> 
 Authenticating...
 OK
 
@@ -34,14 +41,14 @@ Targeted org north-area
 Targeted space development
 
 
-
-API endpoint:   https://api.run.pivotal.io (API version: 2.123.0)
+                
+API endpoint:   https://api.run.pivotal.io (API version: 2.137.0)
 User:           pdoshi@pivotal.io
 Org:            north-area
 Space:          development
-
 ----
-====
+
+
 
 == AppsManager Log In
 
